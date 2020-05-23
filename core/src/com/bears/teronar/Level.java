@@ -73,6 +73,5 @@ public class Level {
                 }
             }
         }
-        game.batch.draw(game.getTexture("assets/King-Up.png"), game.centerX, game.centerY);
     }
 }

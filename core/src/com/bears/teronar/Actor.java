@@ -1,6 +1,4 @@
 package com.bears.teronar;
-
-import java.io.Serializable;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Actor {
@@ -9,6 +7,7 @@ public class Actor {
     Boolean solid;
     int size;
     Boolean visible;
+    Position position;
 
     public Actor(Texture texture) {
         this.texture = texture;
@@ -16,5 +15,6 @@ public class Actor {
         this.solid = true;
         this.visible = false;
         this.size = 64;
+        position = Position.defaultPos();
     }
 }
