@@ -19,9 +19,8 @@ public class Teronar extends Game {
 	public void create() {
 		batch = new SpriteBatch();
 		loaded = new HashMap<>();
-		//Use LibGDX's default Arial font.
 		font = new BitmapFont();
-		screenSizeX = 800; screenSizeY = 480;
+		screenSizeX = 1024; screenSizeY = 576;
 		this.setScreen(new MainMenuScreen(this));
 	}
 
@@ -30,6 +29,8 @@ public class Teronar extends Game {
 	}
 
 	public void dispose() {
+		batch.dispose();
+		font.dispose();
 	}
 
 	public Texture getTexture(String path) {
