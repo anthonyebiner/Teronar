@@ -32,12 +32,12 @@ public class Level {
         int minY = (game.centerY - game.screenSizeY/2);
         int maxX = (game.centerX + game.screenSizeX/2);
         int maxY = (game.centerY + game.screenSizeY/2);
-        for (int x = divUp(minX,64); x <= divDown(maxX, 64); x++) {
-            for (int y = divUp(minY, 64); y <= divDown(maxY, 64); y++) {
+        for (int x = divDown(minX,64); x <= divDown(maxX, 64); x++) {
+            for (int y = divDown(minY, 64); y <= divDown(maxY, 64); y++) {
                 if (x >= 0 && x < tiles[0].length && y >= 0 && y < tiles.length) {
-                    Tile tile = tiles[x][y];
+                    Tile tile = tiles[y][x];
                     if (tile.visible) {
-                        game.batch.draw(tile.texture, x*tile.size+minX, y*tile.size+minY);
+                        game.batch.draw(tile.texture, x*tile.size, y*tile.size);
                     }
                 }
             }

@@ -24,6 +24,7 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        camera.position.set(game.centerX, game.centerY, 0);
         camera.update();
 
         game.batch.setProjectionMatrix(camera.combined);
@@ -40,7 +41,6 @@ public class GameScreen implements Screen {
             game.centerY += 200 * Gdx.graphics.getDeltaTime();
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
             game.centerY -= 200 * Gdx.graphics.getDeltaTime();
-        System.out.println(game.centerX + " " + game.centerY);
     }
 
     @Override
