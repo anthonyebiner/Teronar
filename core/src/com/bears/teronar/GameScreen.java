@@ -10,10 +10,12 @@ public class GameScreen implements Screen {
     final Teronar game;
     OrthographicCamera camera;
     Level level;
+    Character character;
 
     public GameScreen(final Teronar game) {
         this.game = game;
         this.level = basicLevel();
+        this.character = new Character(game, game.getTexture("assets/pillar.png"));
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, game.screenSizeX, game.screenSizeY);
@@ -31,6 +33,7 @@ public class GameScreen implements Screen {
 
         game.batch.begin();
         level.render();
+        character.render();
         game.batch.end();
 
         level.handleMovement();
