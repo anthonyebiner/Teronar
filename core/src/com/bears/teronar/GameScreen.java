@@ -33,14 +33,7 @@ public class GameScreen implements Screen {
         level.render();
         game.batch.end();
 
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
-            game.centerX -= 200 * Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
-            game.centerX += 200 * Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyPressed(Input.Keys.UP))
-            game.centerY += 200 * Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
-            game.centerY -= 200 * Gdx.graphics.getDeltaTime();
+        level.handleMovement();
     }
 
     @Override

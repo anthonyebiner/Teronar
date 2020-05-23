@@ -15,11 +15,13 @@ public class Teronar extends Game {
 	public int centerY;
 	public int screenSizeX;
 	public int screenSizeY;
+	public Tile blankTile;
 
 	public void create() {
 		batch = new SpriteBatch();
 		loaded = new HashMap<>();
 		font = new BitmapFont();
+		blankTile = new BlankTile();
 		screenSizeX = 1024; screenSizeY = 576;
 		centerX = screenSizeX/2; centerY = screenSizeY/2;
 		this.setScreen(new MainMenuScreen(this));

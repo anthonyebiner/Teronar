@@ -1,5 +1,8 @@
 package com.bears.teronar;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+
 public class Level {
     private Tile[][] tiles;
     final Teronar game;
@@ -27,6 +30,34 @@ public class Level {
         }
     }
 
+    public void handleMovement() {
+        int oldx = game.centerX;
+        int oldy = game.centerY;
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
+            game.centerX -= 200 * Gdx.graphics.getDeltaTime();
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
+            game.centerX += 200 * Gdx.graphics.getDeltaTime();
+        if (Gdx.input.isKeyPressed(Input.Keys.UP))
+            game.centerY += 200 * Gdx.graphics.getDeltaTime();
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
+            game.centerY -= 200 * Gdx.graphics.getDeltaTime();
+
+        if (getTile(game.centerX, game.centerY).solid) {
+            game.centerX = oldx;
+            game.centerY = oldy;
+        }
+    }
+
+    public Tile getTile(int x, int y) {
+        x = divUp(x, 64);
+        y = divUp(y, 64);
+        if (x >= 0 && x < tiles[0].length && y >= 0 && y < tiles.length) {
+            return tiles[divDown(y,64)][divDown(x, 64)];
+        } else {
+            return game.blankTile;
+        }
+    }
+
     public void render() {
         int minX = (game.centerX - game.screenSizeX/2);
         int minY = (game.centerY - game.screenSizeY/2);
@@ -42,5 +73,6 @@ public class Level {
                 }
             }
         }
+        game.batch.draw(game.getTexture("assets/King-Up.png"), game.centerX, game.centerY);
     }
 }
