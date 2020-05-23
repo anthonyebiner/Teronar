@@ -1,11 +1,12 @@
 package com.bears.teronar;
 
-import java.io.Serializable;
+import com.badlogic.gdx.graphics.Texture;
 
-public class Tile implements Serializable {
+public abstract class Tile {
     private Boolean visible;
     private Speed movementSpeed;
     private Boolean solid;
+    private Texture texture;
 
-
+    abstract void render();
 }

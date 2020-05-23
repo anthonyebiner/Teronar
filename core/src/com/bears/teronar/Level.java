@@ -1,7 +1,13 @@
 package com.bears.teronar;
 
-import java.io.Serializable;
+public class Level {
+    private Tile[][] tiles;
 
-public class Level implements Serializable {
-    
+    public Level(Tile[][] tiles) {
+        this.tiles = tiles;
+    }
+
+    public void render() {
+
+    }
 }
