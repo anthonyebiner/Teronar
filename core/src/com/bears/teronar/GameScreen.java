@@ -1,6 +1,7 @@
 package com.bears.teronar;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -30,6 +31,16 @@ public class GameScreen implements Screen {
         game.batch.begin();
         level.render();
         game.batch.end();
+
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
+            game.centerX -= 200 * Gdx.graphics.getDeltaTime();
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
+            game.centerX += 200 * Gdx.graphics.getDeltaTime();
+        if (Gdx.input.isKeyPressed(Input.Keys.UP))
+            game.centerY += 200 * Gdx.graphics.getDeltaTime();
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
+            game.centerY -= 200 * Gdx.graphics.getDeltaTime();
+        System.out.println(game.centerX + " " + game.centerY);
     }
 
     @Override
@@ -62,8 +73,11 @@ public class GameScreen implements Screen {
         FloorTile f1 = new FloorTile(game.getTexture("assets/Dungeon Tile 1.png"));
         FloorTile f2 = new FloorTile(game.getTexture("assets/Dungeon Tile 2.png"));
         FloorTile f3 = new FloorTile(game.getTexture("assets/Dungeon Tile 3.png"));
+        FloorTile f11 = new FloorTile(game.getTexture("assets/Dungeon Tile 1-1.png"));
+        FloorTile f21 = new FloorTile(game.getTexture("assets/Dungeon Tile 2-1.png"));
+        FloorTile f31 = new FloorTile(game.getTexture("assets/Dungeon Tile 3-1.png"));
         Tile[][] tiles = {
-                {f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1},
+                {f11, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1},
                 {f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3},
                 {f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2},
                 {f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1},
@@ -75,6 +89,12 @@ public class GameScreen implements Screen {
                 {f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1},
                 {f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3},
                 {f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2},
+                {f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1},
+                {f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3},
+                {f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2},
+                {f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1},
+                {f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3},
+                {f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2}
         };
         return new Level(game, tiles);
     }
