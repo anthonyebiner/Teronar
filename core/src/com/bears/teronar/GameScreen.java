@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 public class GameScreen implements Screen {
     final Teronar game;
     OrthographicCamera camera;
+    Level level;
 
     public GameScreen(final Teronar game) {
         this.game = game;
@@ -26,7 +27,7 @@ public class GameScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-
+        level.render();
         game.batch.end();
     }
 
