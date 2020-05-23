@@ -8,5 +8,5 @@ public abstract class Tile {
     private Boolean solid;
     private Texture texture;
 
-    abstract void render();
+    abstract void render(int x, int y);
 }

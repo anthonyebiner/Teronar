@@ -1,6 +1,7 @@
 package com.bears.teronar;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -9,11 +10,11 @@ public class MainMenuScreen implements Screen {
     final Teronar game;
     OrthographicCamera camera;
 
-    public MainMenuScreen(final Teronar gam) {
-        game = gam;
+    public MainMenuScreen(final Teronar game) {
+        this.game = game;
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 480);
+        camera.setToOrtho(false, game.screenSizeX, game.screenSizeY);
     }
 
     @Override
@@ -29,7 +30,7 @@ public class MainMenuScreen implements Screen {
         game.font.draw(game.batch, "Press any key to begin", 100, 100);
         game.batch.end();
 
-        if (Gdx.input.isTouched()) {
+        if (Gdx.input.isTouched() || Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
             game.setScreen(new GameScreen(game));
             dispose();
         }

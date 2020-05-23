@@ -9,32 +9,24 @@ public class GameScreen implements Screen {
     final Teronar game;
     OrthographicCamera camera;
 
-    public GameScreen(final Teronar gam) {
-        this.game = gam;
+    public GameScreen(final Teronar game) {
+        this.game = game;
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 480);
+        camera.setToOrtho(false, game.screenSizeX, game.screenSizeY);
     }
 
     @Override
     public void render(float delta) {
-        // clear the screen with a dark blue color. The
-        // arguments to glClearColor are the red, green
-        // blue and alpha component in the range [0,1]
-        // of the color to be used to clear the screen.
-        Gdx.gl.glClearColor(0, 0, 0.2f, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        // tell the camera to update its matrices.
         camera.update();
 
-        // tell the SpriteBatch to render in the
-        // coordinate system specified by the camera.
         game.batch.setProjectionMatrix(camera.combined);
 
-        // begin a new batch and draw the bucket and
-        // all drops
         game.batch.begin();
+
         game.batch.end();
     }
 
