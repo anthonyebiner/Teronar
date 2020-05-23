@@ -2,9 +2,8 @@ package com.bears.teronar;
 
 import com.badlogic.gdx.graphics.Texture;
 
-public class Floor extends Tile{
-
-    public Floor(Texture texture) {
+public class FloorTile extends Tile{
+    public FloorTile(Texture texture) {
         this.texture = texture;
         this.movementSpeed = Speed.MEDIUM;
         this.solid = false;

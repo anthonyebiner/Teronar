@@ -12,6 +12,7 @@ public class GameScreen implements Screen {
 
     public GameScreen(final Teronar game) {
         this.game = game;
+        this.level = basicLevel();
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, game.screenSizeX, game.screenSizeY);
@@ -55,5 +56,26 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
+    }
+
+    private Level basicLevel() {
+        FloorTile f1 = new FloorTile(game.getTexture("assets/Dungeon Tile 1.png"));
+        FloorTile f2 = new FloorTile(game.getTexture("assets/Dungeon Tile 2.png"));
+        FloorTile f3 = new FloorTile(game.getTexture("assets/Dungeon Tile 3.png"));
+        Tile[][] tiles = {
+                {f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1},
+                {f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3},
+                {f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2},
+                {f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1},
+                {f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3},
+                {f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2},
+                {f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1},
+                {f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3},
+                {f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2},
+                {f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1},
+                {f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3},
+                {f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2},
+        };
+        return new Level(game, tiles);
     }
 }

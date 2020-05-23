@@ -21,6 +21,7 @@ public class Teronar extends Game {
 		loaded = new HashMap<>();
 		font = new BitmapFont();
 		screenSizeX = 1024; screenSizeY = 576;
+		centerX = screenSizeX/2; centerY = screenSizeY/2;
 		this.setScreen(new MainMenuScreen(this));
 	}
 
