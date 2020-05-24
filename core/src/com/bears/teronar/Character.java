@@ -33,15 +33,7 @@ public class Character {
         if (this.health <= 0) {
             return;
         }
-        int rotate = 0;
-        if (this.orientation == 1) {
-            rotate = 90;
-        } else if (this.orientation == 2) {
-            rotate = 180;
-        } else if (this.orientation == 3) {
-            rotate = -90;
-        }
-        game.batch.draw(character.texture, x, y, 32, 32, 64, 64, 1, 1, rotate, 0, 0, 64, 64, false, false);
+        game.batch.draw(character.texture, x, y);
         x = game.centerX;
         y = game.centerY;
         for (Enemy e : level.actors) {
