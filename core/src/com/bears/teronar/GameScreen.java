@@ -13,6 +13,7 @@ public class GameScreen implements Screen {
     Level level;
     Character character;
     Boss boss;
+    Wizard wizard;
 
     public GameScreen(final Teronar game) {
         this.game = game;
@@ -25,6 +26,7 @@ public class GameScreen implements Screen {
         this.boss = new Boss(game, level,game.getTexture("assets/King-Up.png"),game.getTexture("assets/bolt_necromancer.png"));
         level.boss = this.boss;
         level.character = character;
+        this.wizard = new Wizard(this.game.getTexture("assets/Grand-Sorcerer.png"), this.game, this.level);
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, game.screenSizeX, game.screenSizeY);
@@ -44,6 +46,7 @@ public class GameScreen implements Screen {
         level.render();
         character.render(delta);
         boss.render(delta);
+        wizard.render();
         game.batch.end();
 
         level.handleMovement();
