@@ -1,6 +1,4 @@
 package com.bears.teronar;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 
 import java.util.ArrayList;
@@ -12,7 +10,7 @@ public class Boss {
     private Texture bulletTexture;
     private Texture swordTexture;
     private ArrayList<BossBullet> movingBullets;
-    private Sword sword;
+    private Blade sword;
     long cooldown;
     private final int MIN_COOLDOWN = 350;
     private Level level;
