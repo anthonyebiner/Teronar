@@ -99,21 +99,23 @@ public class Level {
         FloorTile f11 = new FloorTile(game.getTexture("assets/Dungeon Tile 1-1.png"));
         FloorTile f21 = new FloorTile(game.getTexture("assets/Dungeon Tile 2-1.png"));
         FloorTile f31 = new FloorTile(game.getTexture("assets/Dungeon Tile 3-1.png"));
-        WallTile wt = new WallTile(game.getTexture("assets/Dungeon Wall Top.png"));
+        WallTile wt = new WallTile(game.getTexture("assets/Dungeon Wall Horizontal.png"));
         WallTile wtl = new WallTile(game.getTexture("assets/Dungeon Wall Top Left.png"));
         WallTile wtr = new WallTile(game.getTexture("assets/Dungeon Wall Top Right.png"));
+        WallTile wbl = new WallTile(game.getTexture("assets/Dungeon Wall Bottom Left.png"));
+        WallTile wbr = new WallTile(game.getTexture("assets/Dungeon Wall Bottom Right.png"));
         WallTile wv = new WallTile(game.getTexture("assets/Dungeon Wall Vertical.png"));
         ArrayList<Enemy> actors = new ArrayList<>();
 
         Tile[][] tiles = {
-                {wtl, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wtr},
+                {wbl, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wbr},
                 {wv, f11, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, wv},
                 {wv, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, wv},
                 {wv, f2, f2, f2, f2, wt, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, wt, f2, f2, f2, wv},
                 {wv, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, wv, f1, f1, f1, f1, f1, f1, f1, f1, f1, wv},
                 {wv, f3, f3, f3, f3, f31, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, wv, f3, f3, f3, f3, f3, f3, f3, f3, f3, wv},
                 {wv, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f21, wv},
-                {wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt},
+                {wtl, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wtr},
         };
         return new Level(game, tiles, actors);
     }

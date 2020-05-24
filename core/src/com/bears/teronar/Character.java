@@ -37,7 +37,7 @@ public class Character {
         if (this.health <= 0) {
             return;
         }
-        game.batch.draw(character.texture, game.centerX, game.centerY);
+        game.batch.draw(character.texture, x, y);
         x = game.centerX;
         y = game.centerY;
         for (Enemy e : level.actors) {
@@ -55,7 +55,7 @@ public class Character {
         float x = Gdx.input.getX() - WINDOWMAX_X / 2;
         float y = WINDOWMAX_Y / 2 - Gdx.input.getY();
         double theta = Math.atan2(y, x);
-
+        
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && cooldownDiff > MIN_COOLDOWN) {
             this.cooldown = System.currentTimeMillis();
             movingBullets.add(new Bullet(bulletTexture, game, this.level, theta));
