@@ -70,7 +70,7 @@ public class Level{
     }
 
     public void spawnWeapon(int x, int y) {
-        fireWeapon w = new fireWeapon(game, game.getTexture("assets/pot_health.png"), new Position(x, y));
+        fireWeapon w = new fireWeapon(game, game.getTexture("assets/gem_fire.png"), new Position(x, y));
         weapons.add(w);
     }
 
