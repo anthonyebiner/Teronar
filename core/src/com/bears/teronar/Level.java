@@ -101,7 +101,7 @@ public class Level {
         FloorTile f11 = new FloorTile(game.getTexture("assets/Dungeon Tile 1-1.png"));
         FloorTile f21 = new FloorTile(game.getTexture("assets/Dungeon Tile 2-1.png"));
         FloorTile f31 = new FloorTile(game.getTexture("assets/Dungeon Tile 3-1.png"));
-        WallTile w = new WallTile(game.getTexture("assets/pillar.png"));
+        WallTile w = new WallTile(game.getTexture("assets/gem_ice.png"));
         ArrayList<Enemy> actors = new ArrayList<>();
 
         Tile[][] tiles = {
