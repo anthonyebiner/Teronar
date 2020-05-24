@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector3;
 
 import java.util.ArrayList;
 
-public class Character {
+public class Character extends Animator{
     private Actor character;
     final Teronar game;
     private Texture bulletTexture;
@@ -22,8 +22,6 @@ public class Character {
     private long lastHitTime;
     private int WINDOWMAX_X = 638 + 40;
     private int WINDOWMAX_Y = 478;
-    private Animation<TextureRegion> walkingAnimation;
-
 
     public Character(final Teronar game, Level level, Texture mainCharacterTexture, Texture projectile) {
         this.character = new Actor(mainCharacterTexture);

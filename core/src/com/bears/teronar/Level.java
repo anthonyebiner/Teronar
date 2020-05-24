@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input;
 
 import java.util.ArrayList;
 
-public class Level {
+public class Level extends Animator{
     private Tile[][] tiles;
     final Teronar game;
     ArrayList<Enemy> actors;
