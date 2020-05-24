@@ -11,6 +11,7 @@ public class Enemy extends Actor{
     Random rand;
     int movementClock;
     int dx, dy;
+    int AGGRO_RANGE;
 
     public Enemy(final Teronar game, Level level, Texture texture, Position position) {
         super(texture);
@@ -21,11 +22,18 @@ public class Enemy extends Actor{
         this.health = 10;
         this.rand = new Random();
         this.movementClock = 0;
+        this.AGGRO_RANGE = game.screenSizeX / 8;
     }
 
     public void move(int dx, int dy) {
         if (!level.getTile(this.position.x + dx, this.position.y + dy).solid) {
-            position.move(dx, dy);
+            if (Math.abs(this.position.x - game.centerX) <= AGGRO_RANGE &&
+                    Math.abs(this.position.y - game.centerY) <= AGGRO_RANGE) {
+                position.move((int) ((this.position.x - game.centerX) * -0.035),
+                        (int) ((this.position.y - game.centerY) * -0.035));
+            } else {
+                position.move(dx, dy);
+            }
         }
     }
 

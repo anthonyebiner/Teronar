@@ -20,9 +20,9 @@ public class Level {
         this.tiles = tiles;
         this.game = game;
         this.actors = actors;
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(120, 120)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(120, 150)));
         actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(300, 250)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(800, 60)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(800, 90)));
     }
 
     public int divDown(int x, int y) {
