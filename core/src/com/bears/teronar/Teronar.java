@@ -23,7 +23,7 @@ public class Teronar extends Game {
 		font = new BitmapFont();
 		blankTile = new BlankTile();
 		screenSizeX = 1024; screenSizeY = 576;
-		centerX = screenSizeX/2; centerY = screenSizeY/2;
+		centerX = 300; centerY = 100;
 		this.setScreen(new MainMenuScreen(this));
 	}
 

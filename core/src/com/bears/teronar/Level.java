@@ -105,6 +105,7 @@ public class Level {
         WallTile wbl = new WallTile(game.getTexture("assets/Dungeon Wall Bottom Left.png"));
         WallTile wbr = new WallTile(game.getTexture("assets/Dungeon Wall Bottom Right.png"));
         WallTile wv = new WallTile(game.getTexture("assets/Dungeon Wall Vertical.png"));
+        BlankTile b = new BlankTile();
         ArrayList<Enemy> actors = new ArrayList<>();
 
         Tile[][] tiles = {
@@ -116,6 +117,37 @@ public class Level {
                 {wv, f3, f3, f3, f3, f31, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, wv, f3, f3, f3, f3, f3, f3, f3, f3, f3, wv},
                 {wv, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f21, wv},
                 {wtl, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wtr},
+        };
+        return new Level(game, tiles, actors);
+    }
+
+    public static Level betterLevel(final Teronar game) {
+        FloorTile f1 = new FloorTile(game.getTexture("assets/Dungeon Tile 1.png"));
+        FloorTile f2 = new FloorTile(game.getTexture("assets/Dungeon Tile 2.png"));
+        FloorTile f3 = new FloorTile(game.getTexture("assets/Dungeon Tile 3.png"));
+        FloorTile f11 = new FloorTile(game.getTexture("assets/Dungeon Tile 1-1.png"));
+        FloorTile f21 = new FloorTile(game.getTexture("assets/Dungeon Tile 2-1.png"));
+        FloorTile f31 = new FloorTile(game.getTexture("assets/Dungeon Tile 3-1.png"));
+        WallTile wt = new WallTile(game.getTexture("assets/Dungeon Wall Horizontal.png"));
+        WallTile wtl = new WallTile(game.getTexture("assets/Dungeon Wall Top Left.png"));
+        WallTile wtr = new WallTile(game.getTexture("assets/Dungeon Wall Top Right.png"));
+        WallTile wbl = new WallTile(game.getTexture("assets/Dungeon Wall Bottom Left.png"));
+        WallTile wbr = new WallTile(game.getTexture("assets/Dungeon Wall Bottom Right.png"));
+        WallTile wv = new WallTile(game.getTexture("assets/Dungeon Wall Vertical.png"));
+        BlankTile b = new BlankTile();
+        ArrayList<Enemy> actors = new ArrayList<>();
+
+        Tile[][] tiles = {
+                { b,   b,  wt,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  wt,  wt,  wt,  wt},
+                { b,   b,  wt,  f2,  f2,  f2,  wt,  wt,  wt,  wt,  wt,  f2,  f2,  f2,  f2,  wt,  wt,  wt,  wt},
+                { b,   b,  wt,  f1,  f1,  f1,  wt,   b,   b,   b,  wt,  wt,  f1,  f1,  f1,  f1, f11, f11,  wt},
+                { b,  wt,  wt,  f3,  f3,  f3,  wt,   b,   b,   b,   b,  wt,  wt,  f3,  f3,  f3, f31, f31,  wt},
+                {wt,  wt,  f2,  f2,  f2,  wt,  wt,   b,   b,   b,   b,   b,  wt,  wt,  f2,  f2,  f2, f21,  wt},
+                {wt,  f1,  f1,  f1,  f1,  wt,   b,   b,   b,   b,   b,   b,   b,  wt,  f1,  f1,  f1, f11,  wt},
+                {wt,  f3,  f3,  f3,  f3,  wt,   b,   b,   b,   b,   b,   b,   b,  wt,  f3,  f3,  f3,  f3,  wt},
+                {wt,  f2,  f2,  f2,  f2,  wt,   b,   b,   b,   b,   b,   b,   b,  wt,  wt,  f2,  f2,  f2,  wt},
+                {wt,  f1,  f1,  f1,  f1,  wt,   b,   b,   b,   b,   b,   b,   b,   b,  wt,  f1,  f1,  f1,  wt},
+                {wt,  wt,  wt,  wt,  wt,  wt,   b,   b,   b,   b,   b,   b,   b,   b,  wt,  wt,  wt,  wt,  wt},
         };
         return new Level(game, tiles, actors);
     }
