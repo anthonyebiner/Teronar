@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import java.util.ArrayList;
 
 public class Animations {
-    private ArrayList<TextureRegion> frames;
+    public TextureRegion[] frames;
     private static TextureRegion empty = new TextureRegion(new Texture("./assets/Empty.png"));
     private float maxFrameTime;
     private float currentFrameTime;
@@ -15,15 +15,23 @@ public class Animations {
     private Boolean playOnce; // This is a boolean that defines if the animation should not repeat.
 
     public Animations(TextureRegion region, int frameCount, float cycleTime) {
-        playOnce = false;
-        frames = new ArrayList<TextureRegion>();
-        int frameWidth = region.getRegionWidth() / frameCount;
-        for(int i = 0; i < frameCount; i++) {
-            frames.add(new TextureRegion(region, i * frameWidth, 0, frameWidth, region.getRegionHeight()));
-        } // This loop doesn't seem to split the passed texture region at all. It also splits horizontally instead of in a 2x2 grid.
         this.frameCount = frameCount;
-        maxFrameTime = cycleTime / this.frameCount;
-        frame = 0;
+        this.maxFrameTime = cycleTime / this.frameCount;
+        this.playOnce = false;
+        this.frame = 0;
+        TextureRegion[][] tmp = TextureRegion.split(region.getTexture(),
+                region.getTexture().getWidth() / 2,
+                region.getTexture().getHeight() / 2);
+        frames = new TextureRegion[frameCount];
+        int index = 0;
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                frames[index] = tmp[i][j];
+                System.out.println(frames[index]);
+                index++;
+            }
+        }
+
     }
 
     public void update(float delta) { // Update the animation based on how much time has passed.
@@ -35,7 +43,7 @@ public class Animations {
 
         if(frame >= frameCount) { // If the animation is at its end...
             if (playOnce) {
-                frame = frameCount + 1; // If the animation should only be played once, keep it at its end.
+                frame = frameCount - 1; // If the animation should only be played once, keep it at its end.
             } else {
                 frame = 0; // Otherwise, restart the animation.
             }
@@ -43,10 +51,10 @@ public class Animations {
     }
 
     public TextureRegion getFrame() {
-        if (frame == (frameCount + 1) && playOnce){
-            return frames.get(frame); // return empty; // If the animation is to be played once and has played, return an empty frame.
+        if (frame == (frameCount - 1) && playOnce){
+            return this.frames[frame]; // return empty; // If the animation is to be played once and has played, return an empty frame.
         } else {
-            return frames.get(frame); // Otherwise, return the current frame.
+            return this.frames[frame]; // Otherwise, return the current frame.
         }
 
     }

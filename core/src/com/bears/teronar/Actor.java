@@ -1,8 +1,9 @@
 package com.bears.teronar;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Actor {
-    Texture texture;
+    TextureRegion texture;
     Speed movementSpeed;
     Boolean solid;
     int size;
@@ -10,7 +11,7 @@ public class Actor {
     Position position;
 
     public Actor(Texture texture) {
-        this.texture = texture;
+        this.texture = new TextureRegion(texture);
         this.movementSpeed = Speed.STOPPED;
         this.solid = true;
         this.visible = false;

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Character{
@@ -118,28 +119,28 @@ public class Character{
     }
     public void look(String direction){
         if (direction == "Up"){
-            character.texture = upTexture;
+            character.texture = new TextureRegion(upTexture);
         } else if (direction == "Down") {
-            character.texture = downTexture;
+            character.texture = new TextureRegion(downTexture);
         } else if (direction == "Left") {
-            character.texture = leftTexture;
+            character.texture = new TextureRegion(leftTexture);
         } else if (direction == "Right") {
-            character.texture = rightTexture;
+            character.texture = new TextureRegion(rightTexture);
         }
     }
     public void move(String direction, float delta){
         if (direction == "Up"){
             walkUpAnimation.update(delta);
-            character.texture = walkUpAnimation.getFrame().getTexture();
+            character.texture = walkUpAnimation.getFrame();
         } else if (direction == "Down") {
             walkDownAnimation.update(delta);
-            character.texture = walkDownAnimation.getFrame().getTexture();
+            character.texture = walkDownAnimation.getFrame();
         } else if (direction == "Left") {
             walkLeftAnimation.update(delta);
-            character.texture = walkLeftAnimation.getFrame().getTexture();
+            character.texture = walkLeftAnimation.getFrame();
         } else if (direction == "Right") {
             walkRightAnimation.update(delta);
-            character.texture = walkRightAnimation.getFrame().getTexture();
+            character.texture = walkRightAnimation.getFrame();
         }
     }
     public Boolean collision(float x, float y, Boss boss){
