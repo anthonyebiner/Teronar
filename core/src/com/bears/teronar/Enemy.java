@@ -53,6 +53,8 @@ public class Enemy extends Actor{
 
         } else {
             this.visible = false;
+            // Lol get yeeted off screen
+            position.move(10000, 10000);
         }
     }
 }
