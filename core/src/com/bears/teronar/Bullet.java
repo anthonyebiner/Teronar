@@ -16,6 +16,8 @@ public class Bullet {
     private Level level;
     private int cooldown;
     float x, y;
+    private double lifetime;
+    private double age;
     private double theta;
 
     public static final int SPEED = 500;
@@ -34,10 +36,13 @@ public class Bullet {
         this.y = game.centerY;
         this.theta = theta;
         this.level = level;
+        this.lifetime = 4.0;
+        this.age = 0.0;
     }
 
     public void update (float deltaTime) {
-        if (checkScreenBoundary(deltaTime)) {
+        this.age += deltaTime;
+        if (checkScreenBoundary(deltaTime) || (this.age >= this.lifetime)) {
             // Screen condition
             return;
         } else if (level.getTile(Math.round(this.x+this.size/2), Math.round(this.y+this.size/2)).solid){

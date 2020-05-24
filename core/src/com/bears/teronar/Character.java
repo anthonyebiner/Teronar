@@ -54,7 +54,7 @@ public class Character{
             return;
         }
 
-        game.batch.draw(character.texture, x, y);
+        game.batch.draw(character.texture, x, y); // Display the character at the initial position when rendered.
         x = game.centerX;
         y = game.centerY;
         for (Enemy e : level.actors) {

@@ -118,7 +118,7 @@ public class Level{
             return game.blankTile;
         }
     }
-    public Boolean validPosition(int x, int y){
+    public Boolean validPosition(int x, int y){ // This function returns whether the passed position is valid or not.
         return !(getTile(x, y).solid || getTile(x + 60, y + 60).solid
                 || getTile(x + 60, y).solid || getTile(x, y + 60).solid);
     }
