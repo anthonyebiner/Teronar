@@ -68,13 +68,14 @@ public class Character{
         x = game.centerX;
         y = game.centerY;
         for (Enemy e : level.actors) {
-            if ((x >= e.position.x - 64 - 8 && x <= e.position.x + 8) &&
-                    (y >= e.position.y - 64 - 8 && y <= e.position.y + 8) &&
-                    System.currentTimeMillis() - this.lastHitTime > 500) {
+            if (collision(x,y,e)) {
                 this.health -= 20;
-                System.out.println("Ouch!");
                 this.lastHitTime = System.currentTimeMillis();
             }
+        }
+        if (collision(x,y,level.boss)) {
+            this.health -= 30;
+            this.lastHitTime = System.currentTimeMillis();
         }
 
 
@@ -140,5 +141,13 @@ public class Character{
             walkRightAnimation.update(delta);
             character.texture = walkRightAnimation.getFrame().getTexture();
         }
+    }
+    public Boolean collision(float x, float y, Boss boss){
+        return ((x >= level.boss.x - 64 - 8 && x <= level.boss.x + 8) &&
+                (y >= level.boss.y - 64 - 8 && y <= level.boss.y + 8) && System.currentTimeMillis() - this.lastHitTime > 500);
+    }
+    public Boolean collision(float x, float y, Enemy enemy){
+        return ((x >= enemy.position.x - 64 - 8 && x <= enemy.position.x + 8) &&
+                (y >= enemy.position.y - 64 - 8 && y <= enemy.position.y + 8) && System.currentTimeMillis() - this.lastHitTime > 500);
     }
 }

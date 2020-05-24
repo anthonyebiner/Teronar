@@ -56,12 +56,12 @@ public class Bullet {
             return;
         } else {
             for (Enemy e : level.actors) {
-                if (collision(x,y,e) && !remove) {
+                if (collision(x,y,e)) {
                     remove = true;
                     e.health -= damage;
                 }
             }
-            if (collision(x,y,level.boss) && !remove) {
+            if (collision(x,y,level.boss)) {
                 remove = true;
                 level.boss.health -= damage;
             }
