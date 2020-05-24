@@ -113,7 +113,7 @@ public class Character{
             bullet.render();
         }
     }
-    public TextureRegion getTexture() {
+    public Texture getTexture() {
         return walkUpAnimation.getFrame();
     }
     public void look(String direction){
@@ -130,16 +130,16 @@ public class Character{
     public void move(String direction, float delta){
         if (direction == "Up"){
             walkUpAnimation.update(delta);
-            character.texture = walkUpAnimation.getFrame().getTexture();
+            character.texture = walkUpAnimation.getFrame();
         } else if (direction == "Down") {
             walkDownAnimation.update(delta);
-            character.texture = walkDownAnimation.getFrame().getTexture();
+            character.texture = walkDownAnimation.getFrame();
         } else if (direction == "Left") {
             walkLeftAnimation.update(delta);
-            character.texture = walkLeftAnimation.getFrame().getTexture();
+            character.texture = walkLeftAnimation.getFrame();
         } else if (direction == "Right") {
             walkRightAnimation.update(delta);
-            character.texture = walkRightAnimation.getFrame().getTexture();
+            character.texture = walkRightAnimation.getFrame();
         }
     }
     public Boolean collision(float x, float y, Boss boss){

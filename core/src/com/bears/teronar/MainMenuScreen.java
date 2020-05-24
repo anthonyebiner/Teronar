@@ -26,7 +26,7 @@ public class MainMenuScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        
+
         game.font.draw(game.batch, "Welcome to Teronar", game.screenSizeX/2-100, game.screenSizeY/2);
         game.font.draw(game.batch, "Press any key to begin", game.screenSizeX/2-110, game.screenSizeY/2-20);
         game.batch.end();
