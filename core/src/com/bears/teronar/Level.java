@@ -20,6 +20,9 @@ public class Level {
         this.tiles = tiles;
         this.game = game;
         this.actors = actors;
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(120, 120)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(300, 250)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(800, 60)));
     }
 
     public int divDown(int x, int y) {
@@ -58,9 +61,7 @@ public class Level {
             game.centerY = oldy;
         }
 
-        for (Enemy actor: actors) {
-            actor.move((int) (Math.random()*10-5), (int) (Math.random()*10-5));
-        }
+
     }
 
     public Tile getTile(int x, int y) {
@@ -102,9 +103,7 @@ public class Level {
         FloorTile f31 = new FloorTile(game.getTexture("assets/Dungeon Tile 3-1.png"));
         WallTile w = new WallTile(game.getTexture("assets/pillar.png"));
         ArrayList<Enemy> actors = new ArrayList<>();
-        actors.add(new Enemy(game, game.getTexture("assets/pot_health.png"), new Position(120, 120)));
-        actors.add(new Enemy(game, game.getTexture("assets/pot_health.png"), new Position(300, 250)));
-        actors.add(new Enemy(game, game.getTexture("assets/pot_health.png"), new Position(800, 60)));
+
         Tile[][] tiles = {
                 {w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w},
                 {w, f11, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, w},
