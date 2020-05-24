@@ -7,9 +7,10 @@ import java.util.ArrayList;
 
 public class Level{
     private Tile[][] tiles;
-    final Teronar game;
+    Teronar game;
     ArrayList<Enemy> actors;
-    int characterHealth;
+    public Boss boss;
+    public Character character;
 
     public Level(final Teronar game, Tile[][] tiles) {
         this.tiles = tiles;
@@ -21,7 +22,7 @@ public class Level{
         this.tiles = tiles;
         this.game = game;
         this.actors = actors;
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(300, 800)));
+
         actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(850, 1050)));
         actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(900, 1050)));
         actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(110, 2300)));
@@ -48,6 +49,10 @@ public class Level{
         actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(550, 3650)));
         actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(450, 3650)));
         actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(400, 3650)));
+    }
+
+    public void spawnEnemy(int x, int y) {
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(x, y)));
     }
 
     public int divDown(int x, int y) {
@@ -110,25 +115,29 @@ public class Level{
     }
 
     private void renderHealth() {
+        if (this.character == null) {
+            return;
+        }
         Actor life = new Actor(game.getTexture("assets/Queen-Up.png"));
-        if (this.characterHealth >= 25) {
+        if (this.character.health >= 20) {
             game.batch.draw(life.texture, game.centerX - game.screenSizeX/2 + 16,
                     game.centerY - game.screenSizeY/2 + 16, 48, 48);
-        } if (this.characterHealth >= 50) {
+        } if (this.character.health >= 40) {
             game.batch.draw(life.texture, game.centerX - game.screenSizeX/2 + 16 + 32*2,
                     game.centerY - game.screenSizeY/2 + 16, 48, 48);
-        } if (this.characterHealth >= 75) {
+        } if (this.character.health >= 60) {
             game.batch.draw(life.texture, game.centerX - game.screenSizeX/2 + 16 + 32*4,
                     game.centerY - game.screenSizeY/2 + 16, 48, 48);
-        } if (this.characterHealth >= 100) {
+        } if (this.character.health >= 80) {
             game.batch.draw(life.texture, game.centerX - game.screenSizeX/2 + 16 + 32*6,
+                    game.centerY - game.screenSizeY/2 + 16, 48, 48);
+        } if (this.character.health >= 100) {
+            game.batch.draw(life.texture, game.centerX - game.screenSizeX/2 + 16 + 32*8,
                     game.centerY - game.screenSizeY/2 + 16, 48, 48);
         }
     }
 
     public void render() {
-        renderHealth();
-
         int minX = (game.centerX - game.screenSizeX/2 - 32);
         int minY = (game.centerY - game.screenSizeY/2 - 32);
         int maxX = (game.centerX + game.screenSizeX/2 + 32);
@@ -146,6 +155,7 @@ public class Level{
         for (Enemy actor: actors) {
             actor.render();
         }
+        renderHealth();
     }
 
     public static Level basicLevel(final Teronar game) {

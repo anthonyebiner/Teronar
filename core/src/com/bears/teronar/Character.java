@@ -25,7 +25,7 @@ public class Character{
     long cooldown;
     private final int MIN_COOLDOWN = 350;
     private Level level;
-    private int health;
+    public int health;
     private int x, y;
     private long lastHitTime;
     private int WINDOWMAX_X = 638 + 40;
@@ -46,7 +46,6 @@ public class Character{
         movingBullets = new ArrayList<>();
         this.cooldown = System.currentTimeMillis();
         this.health = 100;
-        level.characterHealth = 100;
         this.lastHitTime = 0;
     }
 
@@ -62,8 +61,7 @@ public class Character{
             if ((x >= e.position.x - 64 - 8 && x <= e.position.x + 8) &&
                     (y >= e.position.y - 64 - 8 && y <= e.position.y + 8) &&
                     System.currentTimeMillis() - this.lastHitTime > 500) {
-                this.health -= 25;
-                level.characterHealth -= 25;
+                this.health -= 20;
                 System.out.println("Ouch!");
                 this.lastHitTime = System.currentTimeMillis();
             }
