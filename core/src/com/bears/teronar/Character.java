@@ -124,18 +124,19 @@ public class Character{
         if (direction == "Up"){
             walkUpAnimation.update(delta);
             character.texture = walkUpAnimation.getFrame().getTexture();
+            character.texture.dispose();
         } else if (direction == "Down") {
             walkDownAnimation.update(delta);
             character.texture = walkDownAnimation.getFrame().getTexture();
+            character.texture.dispose();
         } else if (direction == "Left") {
             walkLeftAnimation.update(delta);
             character.texture = walkLeftAnimation.getFrame().getTexture();
+            character.texture.dispose();
         } else if (direction == "Right") {
             walkRightAnimation.update(delta);
             character.texture = walkRightAnimation.getFrame().getTexture();
+            character.texture.dispose();
         }
-    }
-    public void dispose(){
-        upTexture.dispose();
     }
 }

@@ -44,7 +44,7 @@ public class Animations {
 
     public TextureRegion getFrame() {
         if (frame == (frameCount + 1) && playOnce){
-            return empty; // If the animation is to be played once and has played, return an empty frame.
+            return frames.get(frame); // return empty; // If the animation is to be played once and has played, return an empty frame.
         } else {
             return frames.get(frame); // Otherwise, return the current frame.
         }
