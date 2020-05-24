@@ -20,7 +20,7 @@ public class Animations {
         int frameWidth = region.getRegionWidth() / frameCount;
         for(int i = 0; i < frameCount; i++) {
             frames.add(new TextureRegion(region, i * frameWidth, 0, frameWidth, region.getRegionHeight()));
-        }
+        } // This loop doesn't seem to split the passed texture region at all. It also splits horizontally instead of in a 2x2 grid.
         this.frameCount = frameCount;
         maxFrameTime = cycleTime / this.frameCount;
         frame = 0;
