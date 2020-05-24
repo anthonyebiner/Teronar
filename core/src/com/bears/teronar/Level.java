@@ -9,6 +9,7 @@ public class Level{
     private Tile[][] tiles;
     final Teronar game;
     ArrayList<Enemy> actors;
+    int characterHealth;
 
     public Level(final Teronar game, Tile[][] tiles) {
         this.tiles = tiles;
@@ -110,7 +111,26 @@ public class Level{
         }
     }
 
+    private void renderHealth() {
+        Actor life = new Actor(game.getTexture("assets/Queen-Up.png"));
+        if (this.characterHealth >= 25) {
+            game.batch.draw(life.texture, game.centerX - game.screenSizeX/2 + 16,
+                    game.centerY - game.screenSizeY/2 + 16, 48, 48);
+        } if (this.characterHealth >= 50) {
+            game.batch.draw(life.texture, game.centerX - game.screenSizeX/2 + 16 + 32*2,
+                    game.centerY - game.screenSizeY/2 + 16, 48, 48);
+        } if (this.characterHealth >= 75) {
+            game.batch.draw(life.texture, game.centerX - game.screenSizeX/2 + 16 + 32*4,
+                    game.centerY - game.screenSizeY/2 + 16, 48, 48);
+        } if (this.characterHealth >= 100) {
+            game.batch.draw(life.texture, game.centerX - game.screenSizeX/2 + 16 + 32*6,
+                    game.centerY - game.screenSizeY/2 + 16, 48, 48);
+        }
+    }
+
     public void render() {
+        renderHealth();
+
         int minX = (game.centerX - game.screenSizeX/2 - 32);
         int minY = (game.centerY - game.screenSizeY/2 - 32);
         int maxX = (game.centerX + game.screenSizeX/2 + 32);
