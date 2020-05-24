@@ -80,7 +80,7 @@ public class Level{
         float ymovement = 0; // This variable represents the direction/magnitude of y-based movement (none if 0).
         if (Gdx.input.isKeyPressed(Input.Keys.A)) { // A
             xmovement = -1; // If A is pressed, we are moving backwards in the x direction.
-            character.look("Left");
+            character.move("Left", Gdx.graphics.getDeltaTime());
         } else if (Gdx.input.isKeyPressed(Input.Keys.D)) { // D
             xmovement = 1; // If D is pressed, we are moving forwards in the x direction.
             character.look("Right");
