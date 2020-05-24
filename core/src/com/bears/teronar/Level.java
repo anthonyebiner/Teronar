@@ -55,8 +55,8 @@ public class Level {
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
             game.centerY -= 200 * Gdx.graphics.getDeltaTime();
 
-        if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX+64, game.centerY+64).solid
-        || getTile(game.centerX+64, game.centerY).solid || getTile(game.centerX, game.centerY+64).solid) {
+        if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX+60, game.centerY+60).solid
+        || getTile(game.centerX+60, game.centerY).solid || getTile(game.centerX, game.centerY+60).solid) {
             game.centerX = oldx;
             game.centerY = oldy;
         }
