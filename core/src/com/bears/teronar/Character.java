@@ -38,6 +38,7 @@ public class Character{
         movingBullets = new ArrayList<>();
         this.cooldown = System.currentTimeMillis();
         this.health = 100;
+        level.characterHealth = 100;
         this.lastHitTime = 0;
     }
 
@@ -54,6 +55,7 @@ public class Character{
                     (y >= e.position.y - 64 - 8 && y <= e.position.y + 8) &&
                     System.currentTimeMillis() - this.lastHitTime > 500) {
                 this.health -= 25;
+                level.characterHealth -= 25;
                 System.out.println("Ouch!");
                 this.lastHitTime = System.currentTimeMillis();
             }

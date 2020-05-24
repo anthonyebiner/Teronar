@@ -9,6 +9,7 @@ public class Level{
     private Tile[][] tiles;
     final Teronar game;
     ArrayList<Enemy> actors;
+    int characterHealth;
 
     public Level(final Teronar game, Tile[][] tiles) {
         this.tiles = tiles;
@@ -70,20 +71,31 @@ public class Level{
     public void handleMovement() {
         int oldx = game.centerX;
         int oldy = game.centerY;
-        if (Gdx.input.isKeyPressed(Input.Keys.A))
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) { //A
             game.centerX -= 200 * Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyPressed(Input.Keys.D))
+            if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX + 60, game.centerY + 60).solid
+                    || getTile(game.centerX + 60, game.centerY).solid || getTile(game.centerX, game.centerY + 60).solid) {
+                game.centerX = oldx;
+            }
+        } else if (Gdx.input.isKeyPressed(Input.Keys.D)) { //D
             game.centerX += 200 * Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyPressed(Input.Keys.W))
+            if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX + 60, game.centerY + 60).solid
+                    || getTile(game.centerX + 60, game.centerY).solid || getTile(game.centerX, game.centerY + 60).solid) {
+                game.centerX = oldx;
+            }
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) { //W
             game.centerY += 200 * Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyPressed(Input.Keys.S))
+            if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX + 60, game.centerY + 60).solid
+                    || getTile(game.centerX + 60, game.centerY).solid || getTile(game.centerX, game.centerY + 60).solid) {
+                game.centerY = oldy;
+            }
+        } else if (Gdx.input.isKeyPressed(Input.Keys.S)) { //S
             game.centerY -= 200 * Gdx.graphics.getDeltaTime();
-
-
-        if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX+60, game.centerY+60).solid
-        || getTile(game.centerX+60, game.centerY).solid || getTile(game.centerX, game.centerY+60).solid) {
-            game.centerX = oldx;
-            game.centerY = oldy;
+            if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX + 60, game.centerY + 60).solid
+                    || getTile(game.centerX + 60, game.centerY).solid || getTile(game.centerX, game.centerY + 60).solid) {
+                game.centerY = oldy;
+            }
         }
     }
 
@@ -97,7 +109,26 @@ public class Level{
         }
     }
 
+    private void renderHealth() {
+        Actor life = new Actor(game.getTexture("assets/Queen-Up.png"));
+        if (this.characterHealth >= 25) {
+            game.batch.draw(life.texture, game.centerX - game.screenSizeX/2 + 16,
+                    game.centerY - game.screenSizeY/2 + 16, 48, 48);
+        } if (this.characterHealth >= 50) {
+            game.batch.draw(life.texture, game.centerX - game.screenSizeX/2 + 16 + 32*2,
+                    game.centerY - game.screenSizeY/2 + 16, 48, 48);
+        } if (this.characterHealth >= 75) {
+            game.batch.draw(life.texture, game.centerX - game.screenSizeX/2 + 16 + 32*4,
+                    game.centerY - game.screenSizeY/2 + 16, 48, 48);
+        } if (this.characterHealth >= 100) {
+            game.batch.draw(life.texture, game.centerX - game.screenSizeX/2 + 16 + 32*6,
+                    game.centerY - game.screenSizeY/2 + 16, 48, 48);
+        }
+    }
+
     public void render() {
+        renderHealth();
+
         int minX = (game.centerX - game.screenSizeX/2 - 32);
         int minY = (game.centerY - game.screenSizeY/2 - 32);
         int maxX = (game.centerX + game.screenSizeX/2 + 32);
