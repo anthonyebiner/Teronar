@@ -21,7 +21,7 @@ public class Level {
         this.game = game;
         this.actors = actors;
         actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(120, 150)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(300, 250)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(300, 300)));
         actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(800, 90)));
     }
 
