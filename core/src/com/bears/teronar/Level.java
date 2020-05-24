@@ -31,12 +31,12 @@ public class Level {
         }
     }
 
-    public int divUp(int x, int y) {
+    public int div(int x, int y) {
         float res = (float) x / y;
         if (res < 0) {
             return (int) Math.floor(res);
         } else {
-            return (int) Math.ceil(res);
+            return (int) Math.floor(res);
         }
     }
 
@@ -52,7 +52,7 @@ public class Level {
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
             game.centerY -= 200 * Gdx.graphics.getDeltaTime();
 
-        if (getTile(game.centerX, game.centerY).solid) {
+        if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX+64, game.centerY+64).solid) {
             game.centerX = oldx;
             game.centerY = oldy;
         }
@@ -63,10 +63,10 @@ public class Level {
     }
 
     public Tile getTile(int x, int y) {
-        x = divUp(x, 64);
-        y = divUp(y, 64);
+        x = div(x,64);
+        y = div(y,64);
         if (x >= 0 && x < tiles[0].length && y >= 0 && y < tiles.length) {
-            return tiles[divDown(y,64)][divDown(x, 64)];
+            return tiles[y][x];
         } else {
             return game.blankTile;
         }
@@ -99,11 +99,13 @@ public class Level {
         FloorTile f11 = new FloorTile(game.getTexture("assets/Dungeon Tile 1-1.png"));
         FloorTile f21 = new FloorTile(game.getTexture("assets/Dungeon Tile 2-1.png"));
         FloorTile f31 = new FloorTile(game.getTexture("assets/Dungeon Tile 3-1.png"));
+        WallTile w = new WallTile(game.getTexture("assets/pillar.png"));
         ArrayList<Enemy> actors = new ArrayList<>();
         actors.add(new Enemy(game, game.getTexture("assets/pot_health.png"), new Position(120, 120)));
         actors.add(new Enemy(game, game.getTexture("assets/pot_health.png"), new Position(300, 250)));
         actors.add(new Enemy(game, game.getTexture("assets/pot_health.png"), new Position(800, 60)));
         Tile[][] tiles = {
+                {w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w},
                 {f11, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1},
                 {f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3},
                 {f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2},
