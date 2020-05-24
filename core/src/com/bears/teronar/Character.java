@@ -33,7 +33,15 @@ public class Character {
         if (this.health <= 0) {
             return;
         }
-        game.batch.draw(character.texture, game.centerX, game.centerY);
+        int rotate = 0;
+        if (this.orientation == 1) {
+            rotate = 90;
+        } else if (this.orientation == 2) {
+            rotate = 180;
+        } else if (this.orientation == 3) {
+            rotate = -90;
+        }
+        game.batch.draw(character.texture, x, y, 32, 32, 64, 64, 1, 1, rotate, 0, 0, 64, 64, false, false);
         x = game.centerX;
         y = game.centerY;
         for (Enemy e : level.actors) {
@@ -47,16 +55,17 @@ public class Character {
         }
 
 
-        long cooldownDiff =  System.currentTimeMillis() - cooldown;
+        long cooldownDiff = System.currentTimeMillis() - cooldown;
 
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             this.orientation = 0;
-        else if (Gdx.input.isKeyPressed(Input.Keys.UP))
+        } else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             this.orientation = 1;
-        else if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
+        } else if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             this.orientation = 2;
-        else if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
+        }else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             this.orientation = 3;
+        }
 
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && cooldownDiff > MIN_COOLDOWN) {
             this.cooldown = System.currentTimeMillis();
