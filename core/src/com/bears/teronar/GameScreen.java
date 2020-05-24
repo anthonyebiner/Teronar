@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
+
 public class GameScreen implements Screen {
     final Teronar game;
     OrthographicCamera camera;
@@ -14,7 +15,7 @@ public class GameScreen implements Screen {
 
     public GameScreen(final Teronar game) {
         this.game = game;
-        this.level = basicLevel();
+        this.level = Level.basicLevel(game);
         this.character = new Character(game, game.getTexture("assets/pillar.png"));
 
         camera = new OrthographicCamera();
@@ -63,23 +64,5 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-    }
-
-    private Level basicLevel() {
-        FloorTile f1 = new FloorTile(game.getTexture("assets/Dungeon Tile 1.png"));
-        FloorTile f2 = new FloorTile(game.getTexture("assets/Dungeon Tile 2.png"));
-        FloorTile f3 = new FloorTile(game.getTexture("assets/Dungeon Tile 3.png"));
-        FloorTile f11 = new FloorTile(game.getTexture("assets/Dungeon Tile 1-1.png"));
-        FloorTile f21 = new FloorTile(game.getTexture("assets/Dungeon Tile 2-1.png"));
-        FloorTile f31 = new FloorTile(game.getTexture("assets/Dungeon Tile 3-1.png"));
-        Tile[][] tiles = {
-                {f11, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1},
-                {f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3},
-                {f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2},
-                {f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1},
-                {f3, f3, f3, f3, f31, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3},
-                {f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f21}
-        };
-        return new Level(game, tiles);
     }
 }
