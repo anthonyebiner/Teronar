@@ -13,11 +13,13 @@ public class Character {
     long cooldown;
     private final int MIN_COOLDOWN = 350;
     private int orientation = 0;
+    private Level level;
 
-    public Character(final Teronar game, Texture mainCharacterTexture, Texture projectile) {
+    public Character(final Teronar game, Level level, Texture mainCharacterTexture, Texture projectile) {
         this.character = new Actor(mainCharacterTexture);
         this.bulletTexture = projectile;
         this.game = game;
+        this.level = level;
         movingBullets = new ArrayList<>();
         this.cooldown = System.currentTimeMillis();
     }
@@ -38,14 +40,15 @@ public class Character {
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && cooldownDiff > MIN_COOLDOWN) {
             System.out.println(this.orientation);
             this.cooldown = System.currentTimeMillis();
-            movingBullets.add(new Bullet(bulletTexture, game, this.orientation));
+            movingBullets.add(new Bullet(bulletTexture, game, this.level, this.orientation));
         }
 
         ArrayList<Bullet> bulletsToRemove = new ArrayList<Bullet>();
         for (Bullet bullet : movingBullets) {
             bullet.update(delta);
-            if (bullet.remove)
+            if (bullet.remove) {
                 bulletsToRemove.add(bullet);
+            }
         }
         movingBullets.removeAll(bulletsToRemove);
         for (Bullet bullet : movingBullets) {

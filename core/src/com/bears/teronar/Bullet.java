@@ -13,6 +13,7 @@ public class Bullet {
     int size;
     Boolean visible;
     final Teronar game;
+    private Level level;
     private int cooldown;
     float x, y;
     private int orientation;
@@ -20,7 +21,7 @@ public class Bullet {
     public static final int SPEED = 500;
     public boolean remove = false;
 
-    public Bullet(Texture texture, final Teronar game, int orientation) {
+    public Bullet(Texture texture, final Teronar game, Level level, int orientation) {
         this.texture = texture;
         this.movementSpeed = Speed.MEDIUM;
         this.solid = true;
@@ -31,26 +32,43 @@ public class Bullet {
         this.x = game.centerX;
         this.y = game.centerY;
         this.orientation = orientation;
+        this.level = level;
     }
 
     public void update (float deltaTime) {
+        if (checkScreenBoundary(deltaTime)) {
+            // Screen condition
+            return;
+        } else if (level.getTile(Math.round(this.x), Math.round(this.y)).solid){
+            // Wall collision
+            remove = true;
+            return;
+        } else {
+            for (Enemy e : level.actors) {
+                System.out.println("test");
+            }
+        }
+    }
+
+    private boolean checkScreenBoundary(float deltaTime) {
         if (this.orientation == 0) {
             x += SPEED * deltaTime;
-            if (x > game.screenSizeX)
+            if (x > game.centerX + game.screenSizeX/2)
                 remove = true;
         } else if (this.orientation == 1) {
             y += SPEED * deltaTime;
-            if (y < 0)
+            if (y < game.centerY - game.screenSizeY/2)
                 remove = true;
         } else if (this.orientation == 2) {
             x -= SPEED * deltaTime;
-            if (x < 0)
+            if (x < game.centerX - game.screenSizeX/2)
                 remove = true;
         } else if (this.orientation == 3) {
             y -= SPEED * deltaTime;
-            if (y > game.screenSizeY)
+            if (y > game.centerY + game.screenSizeY/2)
                 remove = true;
         }
+        return false;
     }
 
     public void render() {
