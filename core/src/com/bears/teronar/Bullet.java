@@ -53,13 +53,13 @@ public class Bullet {
         } else {
             for (Enemy e : level.actors) {
                 if ((x >= e.position.x - 64 - 8 && x <= e.position.x + 8) &&
-                        (y >= e.position.y - 64 - 8 && y <= e.position.y + 8)) {
+                        (y >= e.position.y - 64 - 8 && y <= e.position.y + 8) && !remove) {
                     remove = true;
                     e.health -= damage;
                 }
             }
             if ((x >= level.boss.x - 64 - 8 && x <= level.boss.x + 8) &&
-                    (y >= level.boss.y - 64 - 8 && y <= level.boss.y + 8)) {
+                    (y >= level.boss.y - 64 - 8 && y <= level.boss.y + 8) && !remove) {
                 remove = true;
                 level.boss.health -= damage;
             }
