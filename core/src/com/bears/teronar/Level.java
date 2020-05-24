@@ -46,13 +46,13 @@ public class Level {
     public void handleMovement() {
         int oldx = game.centerX;
         int oldy = game.centerY;
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
+        if (Gdx.input.isKeyPressed(Input.Keys.A))
             game.centerX -= 200 * Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
+        if (Gdx.input.isKeyPressed(Input.Keys.D))
             game.centerX += 200 * Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyPressed(Input.Keys.UP))
+        if (Gdx.input.isKeyPressed(Input.Keys.W))
             game.centerY += 200 * Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
+        if (Gdx.input.isKeyPressed(Input.Keys.S))
             game.centerY -= 200 * Gdx.graphics.getDeltaTime();
 
         if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX+60, game.centerY+60).solid
