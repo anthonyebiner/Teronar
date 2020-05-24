@@ -14,7 +14,9 @@ public class Character{
     final Teronar game;
     private Texture bulletTexture;
     private Texture swordTexture;
+    private Texture upTexture;
     private ArrayList<Bullet> movingBullets;
+    private Animations walkAnimation;
     private Sword sword;
     long cooldown;
     private final int MIN_COOLDOWN = 350;
@@ -30,6 +32,8 @@ public class Character{
         this.bulletTexture = projectile;
         this.swordTexture = sword;
         this.game = game;
+        this.upTexture = game.getTexture("./assets/animations/Queen-Walk-Up.png");
+        this.walkAnimation = new Animations(new TextureRegion(this.upTexture), 4, 0.5f);
         this.level = level;
         movingBullets = new ArrayList<>();
         this.cooldown = System.currentTimeMillis();
@@ -41,6 +45,7 @@ public class Character{
         if (this.health <= 0) {
             return;
         }
+
         game.batch.draw(character.texture, x, y);
         x = game.centerX;
         y = game.centerY;
@@ -53,6 +58,8 @@ public class Character{
                 this.lastHitTime = System.currentTimeMillis();
             }
         }
+
+        walkAnimation.update(delta);
 
         long cooldownDiff =  System.currentTimeMillis() - cooldown;
 
@@ -85,5 +92,12 @@ public class Character{
         for (Bullet bullet : movingBullets) {
             bullet.render();
         }
+    }
+    public TextureRegion getTexture() {
+        return walkAnimation.getFrame();
+    }
+
+    public void dispose(){
+        upTexture.dispose();
     }
 }
