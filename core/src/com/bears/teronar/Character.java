@@ -14,6 +14,9 @@ public class Character {
     private final int MIN_COOLDOWN = 350;
     private int orientation = 0;
     private Level level;
+    private int health;
+    private int x, y;
+    private long lastHitTime;
 
     public Character(final Teronar game, Level level, Texture mainCharacterTexture, Texture projectile) {
         this.character = new Actor(mainCharacterTexture);
@@ -22,10 +25,28 @@ public class Character {
         this.level = level;
         movingBullets = new ArrayList<>();
         this.cooldown = System.currentTimeMillis();
+        this.health = 100;
+        this.lastHitTime = 0;
     }
 
     public void render(float delta) {
+        if (this.health <= 0) {
+            return;
+        }
         game.batch.draw(character.texture, game.centerX, game.centerY);
+        x = game.centerX;
+        y = game.centerY;
+        for (Enemy e : level.actors) {
+            if ((x >= e.position.x - 64 - 8 && x <= e.position.x + 8) &&
+                    (y >= e.position.y - 64 - 8 && y <= e.position.y + 8) &&
+                    System.currentTimeMillis() - this.lastHitTime > 500) {
+                this.health -= 25;
+                System.out.println("Ouch!");
+                this.lastHitTime = System.currentTimeMillis();
+            }
+        }
+
+
         long cooldownDiff =  System.currentTimeMillis() - cooldown;
 
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))

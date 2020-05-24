@@ -80,6 +80,8 @@ public class Bullet {
         int rotate = 0;
         if (this.orientation == 1) {
             rotate = 90;
+        } else if (this.orientation == 2) {
+            rotate = 180;
         } else if (this.orientation == 3) {
             rotate = -90;
         }
