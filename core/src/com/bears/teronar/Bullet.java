@@ -16,13 +16,13 @@ public class Bullet {
     private Level level;
     private int cooldown;
     float x, y;
-    private int orientation;
+    private double theta;
 
     public static final int SPEED = 500;
     public boolean remove = false;
     private static final int damage = 5;
 
-    public Bullet(Texture texture, final Teronar game, Level level, int orientation) {
+    public Bullet(Texture texture, final Teronar game, Level level, double theta) {
         this.texture = texture;
         this.movementSpeed = Speed.MEDIUM;
         this.solid = true;
@@ -32,7 +32,7 @@ public class Bullet {
         this.cooldown = 0;
         this.x = game.centerX;
         this.y = game.centerY;
-        this.orientation = orientation;
+        this.theta = theta;
         this.level = level;
     }
 
@@ -56,36 +56,18 @@ public class Bullet {
     }
 
     private boolean checkScreenBoundary(float deltaTime) {
-        if (this.orientation == 0) {
-            x += SPEED * deltaTime;
-            if (x > game.centerX + game.screenSizeX/2)
-                remove = true;
-        } else if (this.orientation == 1) {
-            y += SPEED * deltaTime;
-            if (y < game.centerY - game.screenSizeY/2)
-                remove = true;
-        } else if (this.orientation == 2) {
-            x -= SPEED * deltaTime;
-            if (x < game.centerX - game.screenSizeX/2)
-                remove = true;
-        } else if (this.orientation == 3) {
-            y -= SPEED * deltaTime;
-            if (y > game.centerY + game.screenSizeY/2)
+        x += SPEED * deltaTime * Math.cos(theta);
+        y += SPEED * deltaTime * Math.sin(theta);
+        if ((x > game.centerX + game.screenSizeX/2) ||
+                (y < game.centerY - game.screenSizeY/2) ||
+                (x < game.centerX - game.screenSizeX/2) ||
+                (y > game.centerY + game.screenSizeY/2)) {
                 remove = true;
         }
         return false;
     }
 
     public void render() {
-        int rotate = 0;
-        if (this.orientation == 1) {
-            rotate = 90;
-        } else if (this.orientation == 2) {
-            rotate = 180;
-        } else if (this.orientation == 3) {
-            rotate = -90;
-        }
-        game.batch.draw(this.texture, x, y, 32, 32, 64, 64, 1, 1, rotate, 0, 0, 64, 64, false, false);
-
+         game.batch.draw(this.texture, x, y, 32, 32, 64, 64, 1, 1, (float) (theta * 180 / Math.PI), 0, 0, 64, 64, false, false);
     }
 }

@@ -1,7 +1,9 @@
 package com.bears.teronar;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector3;
 
 import java.util.ArrayList;
 
@@ -11,12 +13,14 @@ public class Character {
     private Texture bulletTexture;
     private ArrayList<Bullet> movingBullets;
     long cooldown;
-    private final int MIN_COOLDOWN = 350;
-    private int orientation = 0;
+    private final int MIN_COOLDOWN = 250;
     private Level level;
     private int health;
     private int x, y;
     private long lastHitTime;
+    private int WINDOWMAX_X = 638 + 40;
+    private int WINDOWMAX_Y = 478;
+
 
     public Character(final Teronar game, Level level, Texture mainCharacterTexture, Texture projectile) {
         this.character = new Actor(mainCharacterTexture);
@@ -46,21 +50,15 @@ public class Character {
             }
         }
 
-
         long cooldownDiff =  System.currentTimeMillis() - cooldown;
 
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
-            this.orientation = 0;
-        else if (Gdx.input.isKeyPressed(Input.Keys.UP))
-            this.orientation = 1;
-        else if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
-            this.orientation = 2;
-        else if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
-            this.orientation = 3;
+        float x = Gdx.input.getX() - WINDOWMAX_X / 2;
+        float y = WINDOWMAX_Y / 2 - Gdx.input.getY();
+        double theta = Math.atan2(y, x);
 
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && cooldownDiff > MIN_COOLDOWN) {
+        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && cooldownDiff > MIN_COOLDOWN) {
             this.cooldown = System.currentTimeMillis();
-            movingBullets.add(new Bullet(bulletTexture, game, this.level, this.orientation));
+            movingBullets.add(new Bullet(bulletTexture, game, this.level, theta));
         }
 
         ArrayList<Bullet> bulletsToRemove = new ArrayList<Bullet>();
