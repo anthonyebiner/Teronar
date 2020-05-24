@@ -43,8 +43,8 @@ public class Bullet {
     public void update (float deltaTime) {
         this.age += deltaTime;
         if (checkScreenBoundary(deltaTime) || (this.age >= this.lifetime)) {
-            // Screen condition
-            remove = true;
+            // If the bullet goes offscreen or has lived its lifetime...
+            remove = true; // Remove it.
             return;
         } else if (level.getTile(Math.round(this.x+this.size/2), Math.round(this.y+this.size/2)).solid){
             // Wall collision
