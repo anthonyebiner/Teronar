@@ -70,28 +70,27 @@ public class Level{
     public void handleMovement() {
         int oldx = game.centerX;
         int oldy = game.centerY;
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) { //A
             game.centerX -= 200 * Gdx.graphics.getDeltaTime();
             if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX + 60, game.centerY + 60).solid
                     || getTile(game.centerX + 60, game.centerY).solid || getTile(game.centerX, game.centerY + 60).solid) {
                 game.centerX = oldx;
                 game.centerY = oldy;
             }
-        } else if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+        } else if (Gdx.input.isKeyPressed(Input.Keys.D)) { //D
             game.centerX += 200 * Gdx.graphics.getDeltaTime();
             if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX + 60, game.centerY + 60).solid
                     || getTile(game.centerX + 60, game.centerY).solid || getTile(game.centerX, game.centerY + 60).solid) {
                 game.centerX = oldx;
                 game.centerY = oldy;
             }
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+        } else if (Gdx.input.isKeyPressed(Input.Keys.W)) { //W
             game.centerY += 200 * Gdx.graphics.getDeltaTime();
             if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX + 60, game.centerY + 60).solid
                     || getTile(game.centerX + 60, game.centerY).solid || getTile(game.centerX, game.centerY + 60).solid) {
                 game.centerY = oldy;
             }
-        } else if (Gdx.input.isKeyPressed(Input.Keys.R)) {
+        } else if (Gdx.input.isKeyPressed(Input.Keys.S)) { //S
             game.centerY -= 200 * Gdx.graphics.getDeltaTime();
             if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX + 60, game.centerY + 60).solid
                     || getTile(game.centerX + 60, game.centerY).solid || getTile(game.centerX, game.centerY + 60).solid) {
