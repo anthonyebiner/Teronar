@@ -75,10 +75,10 @@ public class Level {
     }
 
     public void render() {
-        int minX = (game.centerX - game.screenSizeX/2);
-        int minY = (game.centerY - game.screenSizeY/2);
-        int maxX = (game.centerX + game.screenSizeX/2);
-        int maxY = (game.centerY + game.screenSizeY/2);
+        int minX = (game.centerX - game.screenSizeX/2 - 32);
+        int minY = (game.centerY - game.screenSizeY/2 - 32);
+        int maxX = (game.centerX + game.screenSizeX/2 + 32);
+        int maxY = (game.centerY + game.screenSizeY/2 + 32);
         for (int x = divDown(minX,64); x <= divDown(maxX, 64); x++) {
             for (int y = divDown(minY, 64); y <= divDown(maxY, 64); y++) {
                 if (x >= 0 && x < tiles[0].length && y >= 0 && y < tiles.length) {
