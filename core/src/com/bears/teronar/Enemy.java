@@ -24,7 +24,10 @@ public class Enemy extends Actor{
     }
 
     public void move(int dx, int dy) {
-        if (!level.getTile(this.position.x + dx, this.position.y + dy).solid) {
+        if (!level.getTile(this.position.x + dx, this.position.y + dy).solid &&
+                !level.getTile(this.position.x + 60 + dx, this.position.y + 60 + dy).solid &&
+                !level.getTile(this.position.x + 60 + dx, this.position.y + dy).solid &&
+                !level.getTile(this.position.x + dx, this.position.y + 60 + dy).solid) {
             position.move(dx, dy);
         }
     }
