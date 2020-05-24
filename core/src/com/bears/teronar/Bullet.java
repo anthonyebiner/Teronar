@@ -22,7 +22,7 @@ public class Bullet {
 
     public static final int SPEED = 500;
     public boolean remove = false;
-    private static final int damage = 3;
+    private int damage = 3;
 
     public Bullet(Texture texture, final Teronar game, Level level, double theta) {
         this.texture = texture;
@@ -38,6 +38,10 @@ public class Bullet {
         this.level = level;
         this.lifetime = 0.5;
         this.age = 0.0;
+    }
+
+    public void setDamage(int d) {
+        damage = d;
     }
 
     public void update (float deltaTime) {

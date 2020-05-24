@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Character{
     private Actor character;
     final Teronar game;
-    private Texture bulletTexture;
+    public Texture bulletTexture;
     private Texture swordTexture;
     private Texture upTexture;
     private Texture downTexture;
@@ -34,6 +34,7 @@ public class Character{
     private int WINDOWMAX_X = 638 + 40;
     private int WINDOWMAX_Y = 478;
     public int maxHealth;
+    public int bullteDamage = 3;
 
     
     public Character(final Teronar game, Level level, String gender, Texture projectile, Texture sword) {
@@ -90,7 +91,9 @@ public class Character{
         }
         else if (Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT) && cooldownDiff > MIN_COOLDOWN) {
             this.cooldown = System.currentTimeMillis();
-            movingBullets.add(new Bullet(bulletTexture, game, this.level, theta));
+            Bullet b = new Bullet(bulletTexture, game, this.level, theta);
+            b.setDamage(bullteDamage);
+            movingBullets.add(b);
         }
 
         if (sword != null) {
