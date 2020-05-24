@@ -18,10 +18,10 @@ public class GameScreen implements Screen {
         this.game = game;
         this.level = Level.betterLevel(game);
 
-        this.character = new Character(game, level, "Queen", game.getTexture("assets/bolt_standard.png"), game.getTexture("assets/animations/Dagger-Slash_3.png"));
+        this.character = new Character(game, level, "Queen", game.getTexture("assets/bolt_standard.png"), "Dagger");
 
 
-        this.character = new Character(game, level, "Queen", game.getTexture("assets/bolt_standard.png"), game.getTexture("assets/animations/Dagger-Slash_3.png"));
+        this.character = new Character(game, level, "Queen", game.getTexture("assets/bolt_standard.png"), "Dagger");
         this.boss = new Boss(game, level,game.getTexture("assets/King-Up.png"),game.getTexture("assets/bolt_necromancer.png"));
         level.boss = this.boss;
         level.character = character;

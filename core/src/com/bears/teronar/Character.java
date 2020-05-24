@@ -1,20 +1,16 @@
 package com.bears.teronar;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector3;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Character{
     private Actor character;
     final Teronar game;
     public Texture bulletTexture;
-    private Texture swordTexture;
+    private TextureRegion bladeTexture;
     private Texture upTexture;
     private Texture downTexture;
     private Texture leftTexture;
@@ -25,7 +21,7 @@ public class Character{
     private Animations walkLeftAnimation;
     private Animations walkRightAnimation;
     private String monarch_gender;
-    private Sword sword;
+    private Blade sword;
     long cooldown;
     private final int MIN_COOLDOWN = 350;
     private Level level;
@@ -38,14 +34,14 @@ public class Character{
     public int bulletDamage = 3;
 
     
-    public Character(final Teronar game, Level level, String gender, Texture projectile, Texture sword) {
+    public Character(final Teronar game, Level level, String gender, Texture projectile, String weapon) {
         this.upTexture = game.getTexture("./assets/" + gender + "-Up.png");
         this.downTexture = game.getTexture("./assets/" + gender + "-Down.png");
         this.rightTexture = game.getTexture("./assets/" + gender + "-Right.png");
         this.leftTexture = game.getTexture("./assets/" + gender + "-Left.png");
         this.character = new Actor(this.upTexture);
         this.bulletTexture = projectile;
-        this.swordTexture = sword;
+        this.bladeTexture = new TextureRegion(new Texture("./assets/animations/" + weapon + "-Slash.png"));
         this.game = game;
 
         this.walkUpAnimation = new Animations(new TextureRegion(game.getTexture("./assets/animations/" + gender + "-Walk-Up.png")), 4, 0.5f);
@@ -88,7 +84,7 @@ public class Character{
 
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && cooldownDiff > MIN_COOLDOWN) {
             this.cooldown = System.currentTimeMillis();
-            sword = new Sword(swordTexture, game, level, theta);
+            sword = new Blade(bladeTexture, game, level, theta);
             sword.render();
         }
         else if (Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT) && cooldownDiff > MIN_COOLDOWN) {
@@ -99,7 +95,7 @@ public class Character{
         }
 
         if (sword != null) {
-            sword.update();
+            sword.update(delta);
         }
 
         ArrayList<Bullet> bulletsToRemove = new ArrayList<Bullet>();
