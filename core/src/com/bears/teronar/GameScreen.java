@@ -18,13 +18,13 @@ public class GameScreen implements Screen {
         this.game = game;
         this.level = Level.betterLevel(game);
 
-        this.character = new Character(game, level, "Queen", game.getTexture("assets/bolt_standard.png"), game.getTexture("assets/animations/Dagger-Slash_3.png"));
+        // this.character = new Character(game, level, "Queen", game.getTexture("assets/bolt_standard.png"), game.getTexture("assets/animations/Dagger-Slash_3.png"));
 
 
-        // this.character = new Character(game, level, game.getTexture("assets/Queen-Up.png"), game.getTexture("assets/bolt_standard.png"), game.getTexture("assets/animations/Dagger-Slash_3.png"));
-        // this.boss = new Boss(game, level,game.getTexture("assets/King-Up.png"),game.getTexture("assets/bolt_necromancer.png"));
-        // level.boss = this.boss;
-        // level.character = character;
+        this.character = new Character(game, level, game.getTexture("assets/Queen-Up.png"), game.getTexture("assets/bolt_standard.png"), game.getTexture("assets/animations/Dagger-Slash_3.png"));
+        this.boss = new Boss(game, level,game.getTexture("assets/King-Up.png"),game.getTexture("assets/bolt_necromancer.png"));
+        level.boss = this.boss;
+        level.character = character;
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, game.screenSizeX, game.screenSizeY);
