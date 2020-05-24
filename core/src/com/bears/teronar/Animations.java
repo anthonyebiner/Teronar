@@ -23,16 +23,14 @@ public class Animations {
                 region.getTexture().getWidth() / 2,
                 region.getTexture().getHeight() / 2);
         frames = new TextureRegion[frameCount];
-        System.out.println(frameCount);
         int index = 0;
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
-                System.out.println("Initializing frames.");
                 frames[index] = tmp[i][j];
+                System.out.println(frames[index]);
                 index++;
             }
         }
-        System.out.println(frames);
 
     }
 
@@ -52,11 +50,11 @@ public class Animations {
         }
     }
 
-    public Texture getFrame() {
+    public TextureRegion getFrame() {
         if (frame == (frameCount - 1) && playOnce){
-            return this.frames[frame].getTexture(); // return empty; // If the animation is to be played once and has played, return an empty frame.
+            return this.frames[frame]; // return empty; // If the animation is to be played once and has played, return an empty frame.
         } else {
-            return this.frames[frame].getTexture(); // Otherwise, return the current frame.
+            return this.frames[frame]; // Otherwise, return the current frame.
         }
 
     }

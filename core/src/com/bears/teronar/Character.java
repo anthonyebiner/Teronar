@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Character{
@@ -113,18 +114,18 @@ public class Character{
             bullet.render();
         }
     }
-    public Texture getTexture() {
+    public TextureRegion getTexture() {
         return walkUpAnimation.getFrame();
     }
     public void look(String direction){
         if (direction == "Up"){
-            character.texture = upTexture;
+            character.texture = new TextureRegion(upTexture);
         } else if (direction == "Down") {
-            character.texture = downTexture;
+            character.texture = new TextureRegion(downTexture);
         } else if (direction == "Left") {
-            character.texture = leftTexture;
+            character.texture = new TextureRegion(leftTexture);
         } else if (direction == "Right") {
-            character.texture = rightTexture;
+            character.texture = new TextureRegion(rightTexture);
         }
     }
     public void move(String direction, float delta){
