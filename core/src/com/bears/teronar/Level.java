@@ -60,8 +60,6 @@ public class Level {
             game.centerX = oldx;
             game.centerY = oldy;
         }
-
-
     }
 
     public Tile getTile(int x, int y) {
@@ -101,18 +99,21 @@ public class Level {
         FloorTile f11 = new FloorTile(game.getTexture("assets/Dungeon Tile 1-1.png"));
         FloorTile f21 = new FloorTile(game.getTexture("assets/Dungeon Tile 2-1.png"));
         FloorTile f31 = new FloorTile(game.getTexture("assets/Dungeon Tile 3-1.png"));
-        WallTile w = new WallTile(game.getTexture("assets/gem_ice.png"));
+        WallTile wt = new WallTile(game.getTexture("assets/Dungeon Wall Top.png"));
+        WallTile wtl = new WallTile(game.getTexture("assets/Dungeon Wall Top Left.png"));
+        WallTile wtr = new WallTile(game.getTexture("assets/Dungeon Wall Top Right.png"));
+        WallTile wv = new WallTile(game.getTexture("assets/Dungeon Wall Vertical.png"));
         ArrayList<Enemy> actors = new ArrayList<>();
 
         Tile[][] tiles = {
-                {w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w},
-                {w, f11, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, w},
-                {w, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, w},
-                {w, f2, f2, f2, f2, w, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, w, f2, f2, f2, w},
-                {w, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, w, f1, f1, f1, f1, f1, f1, f1, f1, f1, w},
-                {w, f3, f3, f3, f3, f31, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, w, f3, f3, f3, f3, f3, f3, f3, f3, f3, w},
-                {w, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f21, w},
-                {w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w},
+                {wtl, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wtr},
+                {wv, f11, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, wv},
+                {wv, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, wv},
+                {wv, f2, f2, f2, f2, wt, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, wt, f2, f2, f2, wv},
+                {wv, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, wv, f1, f1, f1, f1, f1, f1, f1, f1, f1, wv},
+                {wv, f3, f3, f3, f3, f31, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, wv, f3, f3, f3, f3, f3, f3, f3, f3, f3, wv},
+                {wv, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f21, wv},
+                {wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt, wt},
         };
         return new Level(game, tiles, actors);
     }
