@@ -147,7 +147,7 @@ public class Level{
             if ((p.position.x >= game.centerX - 64 - 8 && p.position.x <= game.centerX + 8) &&
                     (p.position.y >= game.centerY - 64 - 8 && p.position.y <= game.centerY + 8)) {
                 if (p.visible && character.health > 0) {
-                    character.bullteDamage = p.damage;
+                    character.bulletDamage = p.damage;
                     character.bulletTexture = game.getTexture("assets/bolt_fire.png");
                     p.visible = false;
                 }

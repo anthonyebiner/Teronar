@@ -56,14 +56,12 @@ public class Bullet {
             return;
         } else {
             for (Enemy e : level.actors) {
-                if ((x >= e.position.x - 64 - 8 && x <= e.position.x + 8) &&
-                        (y >= e.position.y - 64 - 8 && y <= e.position.y + 8) && !remove) {
+                if (collision(x,y,e) && !remove) {
                     remove = true;
                     e.health -= damage;
                 }
             }
-            if ((x >= level.boss.x - 64 - 8 && x <= level.boss.x + 8) &&
-                    (y >= level.boss.y - 64 - 8 && y <= level.boss.y + 8) && !remove) {
+            if (collision(x,y,level.boss) && !remove) {
                 remove = true;
                 level.boss.health -= damage;
             }
@@ -80,6 +78,14 @@ public class Bullet {
                 remove = true;
         }
         return false;
+    }
+    public Boolean collision(float x, float y, Boss boss){
+        return ((x >= level.boss.x - 64 - 8 && x <= level.boss.x + 8) &&
+                (y >= level.boss.y - 64 - 8 && y <= level.boss.y + 8) && !remove);
+    }
+    public Boolean collision(float x, float y, Enemy enemy){
+        return ((x >= enemy.position.x - 64 - 8 && x <= enemy.position.x + 8) &&
+                (y >= enemy.position.y - 64 - 8 && y <= enemy.position.y + 8) && !remove);
     }
 
     public void render() {

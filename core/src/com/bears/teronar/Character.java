@@ -34,7 +34,7 @@ public class Character{
     private int WINDOWMAX_X = 638 + 40;
     private int WINDOWMAX_Y = 478;
     public int maxHealth;
-    public int bullteDamage = 3;
+    public int bulletDamage = 3;
 
     
     public Character(final Teronar game, Level level, String gender, Texture projectile, Texture sword) {
@@ -92,7 +92,7 @@ public class Character{
         else if (Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT) && cooldownDiff > MIN_COOLDOWN) {
             this.cooldown = System.currentTimeMillis();
             Bullet b = new Bullet(bulletTexture, game, this.level, theta);
-            b.setDamage(bullteDamage);
+            b.setDamage(bulletDamage);
             movingBullets.add(b);
         }
 
