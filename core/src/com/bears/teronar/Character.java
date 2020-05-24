@@ -15,8 +15,12 @@ public class Character{
     private Texture bulletTexture;
     private Texture swordTexture;
     private Texture upTexture;
+    private Texture downTexture;
+    private Texture leftTexture;
+    private Texture rightTexture;
     private ArrayList<Bullet> movingBullets;
-    private Animations walkAnimation;
+    private Animations walkUpAnimation;
+    private String monarch_gender;
     private Sword sword;
     long cooldown;
     private final int MIN_COOLDOWN = 350;
@@ -27,13 +31,17 @@ public class Character{
     private int WINDOWMAX_X = 638 + 40;
     private int WINDOWMAX_Y = 478;
     
-    public Character(final Teronar game, Level level, Texture mainCharacterTexture, Texture projectile, Texture sword) {
-        this.character = new Actor(mainCharacterTexture);
+    public Character(final Teronar game, Level level, String gender, Texture projectile, Texture sword) {
+        this.upTexture = game.getTexture("./assets/" + gender + "-Up.png");
+        this.downTexture = game.getTexture("./assets/" + gender + "-Down.png");
+        this.rightTexture = game.getTexture("./assets/" + gender + "-Right.png");
+        this.leftTexture = game.getTexture("./assets/" + gender + "-Left.png");
+        this.character = new Actor(this.upTexture);
         this.bulletTexture = projectile;
         this.swordTexture = sword;
         this.game = game;
-        this.upTexture = game.getTexture("./assets/animations/Queen-Walk-Up.png");
-        this.walkAnimation = new Animations(new TextureRegion(this.upTexture), 4, 0.5f);
+
+        this.walkUpAnimation = new Animations(new TextureRegion(game.getTexture("./assets/animations/" + gender + "-Walk-Up.png")), 4, 0.5f);
         this.level = level;
         movingBullets = new ArrayList<>();
         this.cooldown = System.currentTimeMillis();
@@ -61,7 +69,7 @@ public class Character{
             }
         }
 
-        walkAnimation.update(delta);
+        walkUpAnimation.update(delta);
 
         long cooldownDiff =  System.currentTimeMillis() - cooldown;
 
@@ -96,7 +104,7 @@ public class Character{
         }
     }
     public TextureRegion getTexture() {
-        return walkAnimation.getFrame();
+        return walkUpAnimation.getFrame();
     }
 
     public void dispose(){

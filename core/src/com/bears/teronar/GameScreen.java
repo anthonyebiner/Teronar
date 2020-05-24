@@ -16,7 +16,7 @@ public class GameScreen implements Screen {
     public GameScreen(final Teronar game) {
         this.game = game;
         this.level = Level.betterLevel(game);
-        this.character = new Character(game, level, game.getTexture("assets/Queen-Up.png"), game.getTexture("assets/bolt_standard.png"), game.getTexture("assets/animations/Dagger-Slash_3.png"));
+        this.character = new Character(game, level, "Queen", game.getTexture("assets/bolt_standard.png"), game.getTexture("assets/animations/Dagger-Slash_3.png"));
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, game.screenSizeX, game.screenSizeY);
