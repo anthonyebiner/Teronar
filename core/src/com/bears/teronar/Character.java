@@ -11,7 +11,8 @@ public class Character {
     private Texture bulletTexture;
     private ArrayList<Bullet> movingBullets;
     long cooldown;
-    private final int MIN_COOLDOWN = 250;
+    private final int MIN_COOLDOWN = 350;
+    private int orientation = 0;
 
     public Character(final Teronar game, Texture mainCharacterTexture, Texture projectile) {
         this.character = new Actor(mainCharacterTexture);
@@ -24,10 +25,20 @@ public class Character {
     public void render(float delta) {
         game.batch.draw(character.texture, game.centerX, game.centerY);
         long cooldownDiff =  System.currentTimeMillis() - cooldown;
-        System.out.println(cooldownDiff);
+
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
+            this.orientation = 0;
+        else if (Gdx.input.isKeyPressed(Input.Keys.UP))
+            this.orientation = 1;
+        else if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
+            this.orientation = 2;
+        else if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
+            this.orientation = 3;
+
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && cooldownDiff > MIN_COOLDOWN) {
+            System.out.println(this.orientation);
             this.cooldown = System.currentTimeMillis();
-            movingBullets.add(new Bullet(bulletTexture, game));
+            movingBullets.add(new Bullet(bulletTexture, game, this.orientation));
         }
 
         ArrayList<Bullet> bulletsToRemove = new ArrayList<Bullet>();
