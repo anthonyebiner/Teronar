@@ -76,32 +76,37 @@ public class Level{
     public void handleMovement() {
         int oldx = game.centerX;
         int oldy = game.centerY;
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) { //A
-            game.centerX -= 200 * Gdx.graphics.getDeltaTime();
-            if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX + 60, game.centerY + 60).solid
-                    || getTile(game.centerX + 60, game.centerY).solid || getTile(game.centerX, game.centerY + 60).solid) {
-                game.centerX = oldx;
-            }
-        } else if (Gdx.input.isKeyPressed(Input.Keys.D)) { //D
-            game.centerX += 200 * Gdx.graphics.getDeltaTime();
-            if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX + 60, game.centerY + 60).solid
-                    || getTile(game.centerX + 60, game.centerY).solid || getTile(game.centerX, game.centerY + 60).solid) {
-                game.centerX = oldx;
-            }
+        float xmovement = 0; // This variable represents the direction/magnitude of x-based movement (none if 0).
+        float ymovement = 0; // This variable represents the direction/magnitude of y-based movement (none if 0).
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) { // A
+            xmovement = -1; // If A is pressed, we are moving backwards in the x direction.
+            character.look("Left");
+        } else if (Gdx.input.isKeyPressed(Input.Keys.D)) { // D
+            xmovement = 1; // If D is pressed, we are moving forwards in the x direction.
+            character.look("Right");
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) { //W
-            game.centerY += 200 * Gdx.graphics.getDeltaTime();
-            if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX + 60, game.centerY + 60).solid
-                    || getTile(game.centerX + 60, game.centerY).solid || getTile(game.centerX, game.centerY + 60).solid) {
-                game.centerY = oldy;
-            }
-        } else if (Gdx.input.isKeyPressed(Input.Keys.S)) { //S
-            game.centerY -= 200 * Gdx.graphics.getDeltaTime();
-            if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX + 60, game.centerY + 60).solid
-                    || getTile(game.centerX + 60, game.centerY).solid || getTile(game.centerX, game.centerY + 60).solid) {
-                game.centerY = oldy;
-            }
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) { // W
+            ymovement = 1; // If W is pressed, we are moving forwards in the y direction.
+            character.look("Up");
+        } else if (Gdx.input.isKeyPressed(Input.Keys.S)) { // S
+            ymovement = -1; // If S is pressed, we are moving backwards in the y direction.
+            character.look("Down");
         }
+        if (!(ymovement == 0) && !(xmovement == 0)){ // If both x and y movements are occurring...
+            ymovement = (float) (ymovement/1.414); // Divide y movement by sqrt(2).
+            xmovement = (float) (xmovement/1.414); // Divide x movement by sqrt(2).
+        } // This maintains the magnitude of movement.
+        if (validPosition((int) (game.centerX + xmovement*200*Gdx.graphics.getDeltaTime()), (int) (game.centerY + ymovement*200*Gdx.graphics.getDeltaTime()))){
+            // If both movements together are valid, move both directions.
+            game.centerX = (int) (game.centerX + xmovement*200*Gdx.graphics.getDeltaTime());
+            game.centerY = (int) (game.centerY + ymovement*200*Gdx.graphics.getDeltaTime());
+        } else if (validPosition((int) (game.centerX + xmovement*200*Gdx.graphics.getDeltaTime()),game.centerY)) {
+            // If only the x movement is valid, move in x.
+            game.centerX = (int) (game.centerX + xmovement*200*Gdx.graphics.getDeltaTime());
+        } else if (validPosition(game.centerX,(int) (game.centerY + ymovement*200*Gdx.graphics.getDeltaTime()))) {
+            // If only the y movement is valid, move in y.
+            game.centerY = (int) (game.centerY + ymovement*200*Gdx.graphics.getDeltaTime());
+        } // If none of the combinations are valid, do not move (center stays the same; do nothing!)
     }
 
     public Tile getTile(int x, int y) {
@@ -113,7 +118,10 @@ public class Level{
             return game.blankTile;
         }
     }
-
+    public Boolean validPosition(int x, int y){
+        return !(getTile(x, y).solid || getTile(x + 60, y + 60).solid
+                || getTile(x + 60, y).solid || getTile(x, y + 60).solid);
+    }
     private void renderHealth() {
         if (this.character == null) {
             return;

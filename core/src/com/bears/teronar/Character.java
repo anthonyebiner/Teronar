@@ -104,7 +104,17 @@ public class Character{
     public TextureRegion getTexture() {
         return walkUpAnimation.getFrame();
     }
-
+    public void look(String direction){
+        if (direction == "Up"){
+            character.texture = upTexture;
+        } else if (direction == "Down") {
+            character.texture = downTexture;
+        } else if (direction == "Left") {
+            character.texture = leftTexture;
+        } else if (direction == "Right") {
+            character.texture = rightTexture;
+        }
+    }
     public void dispose(){
         upTexture.dispose();
     }
