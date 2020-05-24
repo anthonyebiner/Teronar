@@ -26,7 +26,10 @@ public class Enemy extends Actor{
     }
 
     public void move(int dx, int dy) {
-        if (!level.getTile(this.position.x + dx, this.position.y + dy).solid) {
+        if (!level.getTile(this.position.x + dx, this.position.y + dy).solid &&
+                !level.getTile(this.position.x + 60 + dx, this.position.y + 60 + dy).solid &&
+                !level.getTile(this.position.x + 60 + dx, this.position.y + dy).solid &&
+                !level.getTile(this.position.x + dx, this.position.y + 60 + dy).solid) {
             if (Math.abs(this.position.x - game.centerX) <= AGGRO_RANGE &&
                     Math.abs(this.position.y - game.centerY) <= AGGRO_RANGE) {
                 position.move((int) ((this.position.x - game.centerX) * -0.035),

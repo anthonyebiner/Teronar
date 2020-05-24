@@ -55,8 +55,8 @@ public class Level {
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
             game.centerY -= 200 * Gdx.graphics.getDeltaTime();
 
-        if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX+64, game.centerY+64).solid
-        || getTile(game.centerX+64, game.centerY).solid || getTile(game.centerX, game.centerY+64).solid) {
+        if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX+60, game.centerY+60).solid
+        || getTile(game.centerX+60, game.centerY).solid || getTile(game.centerX, game.centerY+60).solid) {
             game.centerX = oldx;
             game.centerY = oldy;
         }
@@ -75,10 +75,10 @@ public class Level {
     }
 
     public void render() {
-        int minX = (game.centerX - game.screenSizeX/2);
-        int minY = (game.centerY - game.screenSizeY/2);
-        int maxX = (game.centerX + game.screenSizeX/2);
-        int maxY = (game.centerY + game.screenSizeY/2);
+        int minX = (game.centerX - game.screenSizeX/2 - 32);
+        int minY = (game.centerY - game.screenSizeY/2 - 32);
+        int maxX = (game.centerX + game.screenSizeX/2 + 32);
+        int maxY = (game.centerY + game.screenSizeY/2 + 32);
         for (int x = divDown(minX,64); x <= divDown(maxX, 64); x++) {
             for (int y = divDown(minY, 64); y <= divDown(maxY, 64); y++) {
                 if (x >= 0 && x < tiles[0].length && y >= 0 && y < tiles.length) {
@@ -101,7 +101,7 @@ public class Level {
         FloorTile f11 = new FloorTile(game.getTexture("assets/Dungeon Tile 1-1.png"));
         FloorTile f21 = new FloorTile(game.getTexture("assets/Dungeon Tile 2-1.png"));
         FloorTile f31 = new FloorTile(game.getTexture("assets/Dungeon Tile 3-1.png"));
-        WallTile w = new WallTile(game.getTexture("assets/pillar.png"));
+        WallTile w = new WallTile(game.getTexture("assets/gem_ice.png"));
         ArrayList<Enemy> actors = new ArrayList<>();
 
         Tile[][] tiles = {
