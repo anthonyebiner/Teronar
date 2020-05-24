@@ -22,7 +22,7 @@ public class Animations {
         TextureRegion[][] tmp = TextureRegion.split(region.getTexture(),
                 region.getTexture().getWidth() / 2,
                 region.getTexture().getHeight() / 2);
-        TextureRegion[] frames = new TextureRegion[frameCount];
+        frames = new TextureRegion[frameCount];
         System.out.println(frameCount);
         int index = 0;
         for (int i = 0; i < 2; i++) {
