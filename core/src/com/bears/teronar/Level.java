@@ -81,14 +81,14 @@ public class Level{
         if (Gdx.input.isKeyPressed(Input.Keys.A)) { // A
             xmovement = -1; // If A is pressed, we are moving backwards in the x direction.
             character.look("Left");
-        } else if (Gdx.input.isKeyPressed(Input.Keys.S)) { // D
+        } else if (Gdx.input.isKeyPressed(Input.Keys.D)) { // D
             xmovement = 1; // If D is pressed, we are moving forwards in the x direction.
             character.look("Right");
         }
         if (Gdx.input.isKeyPressed(Input.Keys.W)) { // W
             ymovement = 1; // If W is pressed, we are moving forwards in the y direction.
             character.look("Up");
-        } else if (Gdx.input.isKeyPressed(Input.Keys.R)) { // S
+        } else if (Gdx.input.isKeyPressed(Input.Keys.S)) { // S
             ymovement = -1; // If S is pressed, we are moving backwards in the y direction.
             character.look("Down");
         }
