@@ -44,8 +44,8 @@ public class Boss {
         game.batch.draw(character.texture, x, y);
         if (this.cooldown <= 0) {
             this.cooldown = rand.nextInt(60) + 200;
-            for (int i = 1; i <= 8; i++) {
-                double theta = (360 / 8 * i) * Math.PI / 180;
+            for (int i = 1; i <= 6; i++) {
+                double theta = (360 / 6 * i) * Math.PI / 180;
                 movingBullets.add(new BossBullet(bulletTexture, game, this.level, theta, x, y));
             }
         } else if (this.cooldown == 245) {
@@ -58,8 +58,8 @@ public class Boss {
             }
             this.cooldown -= 1;
         } else if (this.cooldown == 150){
-            for (int i = 1; i <= 8; i++) {
-                double theta = (360 / 8 * i) * Math.PI / 180;
+            for (int i = 1; i <= 6; i++) {
+                double theta = (360 / 6 * i) * Math.PI / 180;
                 movingBullets.add(new BossBullet(bulletTexture, game, this.level, theta, x, y));
             }
             this.cooldown -= 1;

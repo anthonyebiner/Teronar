@@ -16,7 +16,8 @@ public class fireWeapon  extends Actor {
     }
 
     public void render() {
-        if (visible)
+        if (visible) {
             game.batch.draw(texture, position.x, position.y);
+        }
     }
 }

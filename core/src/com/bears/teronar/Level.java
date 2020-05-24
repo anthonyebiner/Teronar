@@ -55,7 +55,7 @@ public class Level{
         spawnEnemy(550, 3650);
         spawnEnemy(450, 3650);
         spawnEnemy(400, 3650);
-        spawnPotion(1000, 4300);
+        spawnPotion(1000, 4170);
         spawnPotion(200, 200);
         spawnWeapon(150, 2300);
     }
