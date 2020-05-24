@@ -23,36 +23,36 @@ public class Level{
         this.game = game;
         this.actors = actors;
 
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(850, 1050)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(900, 1050)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(110, 2300)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(150, 2300)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(125, 2270)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(500, 1500)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(500, 3500)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(550, 3500)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(450, 3500)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(400, 3500)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(500, 3600)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(550, 3600)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(450, 3600)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(400, 3600)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(500, 3700)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(550, 3700)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(450, 3700)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(400, 3700)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(500, 3750)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(550, 3750)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(450, 3750)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(400, 3750)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(500, 3650)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(550, 3650)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(450, 3650)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(400, 3650)));
+        spawnEnemy(850, 1050);
+        spawnEnemy(900, 1050);
+        spawnEnemy(110, 2300);
+        spawnEnemy(150, 2300);
+        spawnEnemy(125, 2270);
+        spawnEnemy(500, 1500);
+        spawnEnemy(500, 3500);
+        spawnEnemy(550, 3500);
+        spawnEnemy(450, 3500);
+        spawnEnemy(400, 3500);
+        spawnEnemy(500, 3600);
+        spawnEnemy(550, 3600);
+        spawnEnemy(450, 3600);
+        spawnEnemy(400, 3600);
+        spawnEnemy(500, 3700);
+        spawnEnemy(550, 3700);
+        spawnEnemy(450, 3700);
+        spawnEnemy(400, 3700);
+        spawnEnemy(500, 3750);
+        spawnEnemy(550, 3750);
+        spawnEnemy(450, 3750);
+        spawnEnemy(400, 3750);
+        spawnEnemy(500, 3650);
+        spawnEnemy(550, 3650);
+        spawnEnemy(450, 3650);
+        spawnEnemy(400, 3650);
     }
 
     public void spawnEnemy(int x, int y) {
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(x, y)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/treacherous_guard.png"), new Position(x, y)));
     }
 
     public int divDown(int x, int y) {
@@ -81,14 +81,14 @@ public class Level{
         if (Gdx.input.isKeyPressed(Input.Keys.A)) { // A
             xmovement = -1; // If A is pressed, we are moving backwards in the x direction.
             character.look("Left");
-        } else if (Gdx.input.isKeyPressed(Input.Keys.D)) { // D
+        } else if (Gdx.input.isKeyPressed(Input.Keys.S)) { // D
             xmovement = 1; // If D is pressed, we are moving forwards in the x direction.
             character.look("Right");
         }
         if (Gdx.input.isKeyPressed(Input.Keys.W)) { // W
             ymovement = 1; // If W is pressed, we are moving forwards in the y direction.
             character.look("Up");
-        } else if (Gdx.input.isKeyPressed(Input.Keys.S)) { // S
+        } else if (Gdx.input.isKeyPressed(Input.Keys.R)) { // S
             ymovement = -1; // If S is pressed, we are moving backwards in the y direction.
             character.look("Down");
         }

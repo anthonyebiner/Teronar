@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Animations {
     private ArrayList<TextureRegion> frames;
-    private static TextureRegion empty = new TextureRegion(new Texture("./assets/empty.png"));
+    private static TextureRegion empty = new TextureRegion(new Texture("./assets/Empty.png"));
     private float maxFrameTime;
     private float currentFrameTime;
     private int frameCount;
