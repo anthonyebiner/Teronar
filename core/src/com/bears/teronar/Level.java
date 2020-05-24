@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input;
 
 import java.util.ArrayList;
 
-public class Level extends Animator{
+public class Level{
     private Tile[][] tiles;
     final Teronar game;
     ArrayList<Enemy> actors;
@@ -54,6 +54,7 @@ public class Level extends Animator{
             game.centerY += 200 * Gdx.graphics.getDeltaTime();
         if (Gdx.input.isKeyPressed(Input.Keys.S))
             game.centerY -= 200 * Gdx.graphics.getDeltaTime();
+
 
         if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX+60, game.centerY+60).solid
         || getTile(game.centerX+60, game.centerY).solid || getTile(game.centerX, game.centerY+60).solid) {

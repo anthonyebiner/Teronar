@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector3;
 
 import java.util.ArrayList;
 
-public class Character extends Animator{
+public class Character{
     private Actor character;
     final Teronar game;
     private Texture bulletTexture;
