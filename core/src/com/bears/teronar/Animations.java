@@ -15,12 +15,12 @@ public class Animations {
     private Boolean playOnce; // This is a boolean that defines if the animation should not repeat.
 
     public Animations(TextureRegion region, int frameCount, float cycleTime) {
-        playOnce = true;
+        playOnce = false;
         frames = new ArrayList<TextureRegion>();
         int frameWidth = region.getRegionWidth() / frameCount;
         for(int i = 0; i < frameCount; i++) {
             frames.add(new TextureRegion(region, i * frameWidth, 0, frameWidth, region.getRegionHeight()));
-        }
+        } // This loop doesn't seem to split the passed texture region at all. It also splits horizontally instead of in a 2x2 grid.
         this.frameCount = frameCount;
         maxFrameTime = cycleTime / this.frameCount;
         frame = 0;
@@ -44,7 +44,7 @@ public class Animations {
 
     public TextureRegion getFrame() {
         if (frame == (frameCount + 1) && playOnce){
-            return empty; // If the animation is to be played once and has played, return an empty frame.
+            return frames.get(frame); // return empty; // If the animation is to be played once and has played, return an empty frame.
         } else {
             return frames.get(frame); // Otherwise, return the current frame.
         }
