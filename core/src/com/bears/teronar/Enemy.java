@@ -12,6 +12,7 @@ public class Enemy extends Actor{
     int movementClock;
     int dx, dy;
     int AGGRO_RANGE;
+    long lastHit;
 
     public Enemy(final Teronar game, Level level, Texture texture, Position position) {
         super(texture);
@@ -23,6 +24,7 @@ public class Enemy extends Actor{
         this.rand = new Random();
         this.movementClock = 0;
         this.AGGRO_RANGE = game.screenSizeX / 8;
+        this.lastHit = System.currentTimeMillis();
     }
 
     public void move(int dx, int dy) {

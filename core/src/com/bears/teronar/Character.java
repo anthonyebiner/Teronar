@@ -11,7 +11,9 @@ public class Character {
     private Actor character;
     final Teronar game;
     private Texture bulletTexture;
+    private Texture swordTexture;
     private ArrayList<Bullet> movingBullets;
+    private Sword sword;
     long cooldown;
     private final int MIN_COOLDOWN = 350;
     private Level level;
@@ -22,9 +24,11 @@ public class Character {
     private int WINDOWMAX_Y = 478;
 
 
-    public Character(final Teronar game, Level level, Texture mainCharacterTexture, Texture projectile) {
+
+    public Character(final Teronar game, Level level, Texture mainCharacterTexture, Texture projectile, Texture sword) {
         this.character = new Actor(mainCharacterTexture);
         this.bulletTexture = projectile;
+        this.swordTexture = sword;
         this.game = game;
         this.level = level;
         movingBullets = new ArrayList<>();
@@ -58,7 +62,16 @@ public class Character {
 
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && cooldownDiff > MIN_COOLDOWN) {
             this.cooldown = System.currentTimeMillis();
+            sword = new Sword(swordTexture, game, level, theta);
+            sword.render();
+        }
+        else if (Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT) && cooldownDiff > MIN_COOLDOWN) {
+            this.cooldown = System.currentTimeMillis();
             movingBullets.add(new Bullet(bulletTexture, game, this.level, theta));
+        }
+
+        if (sword != null) {
+            sword.update();
         }
 
         ArrayList<Bullet> bulletsToRemove = new ArrayList<Bullet>();
