@@ -40,14 +40,14 @@ public class Bullet {
         if (checkScreenBoundary(deltaTime)) {
             // Screen condition
             return;
-        } else if (level.getTile(Math.round(this.x), Math.round(this.y)).solid){
+        } else if (level.getTile(Math.round(this.x+this.size/2), Math.round(this.y+this.size/2)).solid){
             // Wall collision
             remove = true;
             return;
         } else {
             for (Enemy e : level.actors) {
                 if ((x >= e.position.x - 64 - 8 && x <= e.position.x + 8) &&
-                        (y >= e.position.y - 64 - 8&& y <= e.position.y + 8)) {
+                        (y >= e.position.y - 64 - 8 && y <= e.position.y + 8)) {
                     remove = true;
                     e.health -= damage;
                 }
