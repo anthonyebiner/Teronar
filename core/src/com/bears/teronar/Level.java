@@ -20,9 +20,33 @@ public class Level {
         this.tiles = tiles;
         this.game = game;
         this.actors = actors;
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(120, 150)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(300, 300)));
-        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(800, 90)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(300, 800)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(850, 1050)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(900, 1050)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(110, 2300)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(150, 2300)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(125, 2270)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(500, 1500)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(500, 3500)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(550, 3500)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(450, 3500)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(400, 3500)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(500, 3600)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(550, 3600)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(450, 3600)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(400, 3600)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(500, 3700)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(550, 3700)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(450, 3700)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(400, 3700)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(500, 3750)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(550, 3750)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(450, 3750)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(400, 3750)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(500, 3650)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(550, 3650)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(450, 3650)));
+        actors.add(new Enemy(game, this, game.getTexture("assets/pot_health.png"), new Position(400, 3650)));
     }
 
     public int divDown(int x, int y) {
@@ -128,6 +152,9 @@ public class Level {
         FloorTile f11 = new FloorTile(game.getTexture("assets/Dungeon Tile 1-1.png"));
         FloorTile f21 = new FloorTile(game.getTexture("assets/Dungeon Tile 2-1.png"));
         FloorTile f31 = new FloorTile(game.getTexture("assets/Dungeon Tile 3-1.png"));
+        FloorTile f12 = new FloorTile(game.getTexture("assets/Dungeon Tile 1-2.png"));
+        FloorTile f22 = new FloorTile(game.getTexture("assets/Dungeon Tile 2-2.png"));
+        FloorTile f32 = new FloorTile(game.getTexture("assets/Dungeon Tile 3-2.png"));
         WallTile wt = new WallTile(game.getTexture("assets/Dungeon Wall Horizontal.png"));
         WallTile wtl = new WallTile(game.getTexture("assets/Dungeon Wall Top Left.png"));
         WallTile wtr = new WallTile(game.getTexture("assets/Dungeon Wall Top Right.png"));
@@ -138,16 +165,75 @@ public class Level {
         ArrayList<Enemy> actors = new ArrayList<>();
 
         Tile[][] tiles = {
-                { b,   b,  wt,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  wt,  wt,  wt,  wt},
-                { b,   b,  wt,  f2,  f2,  f2,  wt,  wt,  wt,  wt,  wt,  f2,  f2,  f2,  f2,  wt,  wt,  wt,  wt},
-                { b,   b,  wt,  f1,  f1,  f1,  wt,   b,   b,   b,  wt,  wt,  f1,  f1,  f1,  f1, f11, f11,  wt},
-                { b,  wt,  wt,  f3,  f3,  f3,  wt,   b,   b,   b,   b,  wt,  wt,  f3,  f3,  f3, f31, f31,  wt},
-                {wt,  wt,  f2,  f2,  f2,  wt,  wt,   b,   b,   b,   b,   b,  wt,  wt,  f2,  f2,  f2, f21,  wt},
-                {wt,  f1,  f1,  f1,  f1,  wt,   b,   b,   b,   b,   b,   b,   b,  wt,  f1,  f1,  f1, f11,  wt},
-                {wt,  f3,  f3,  f3,  f3,  wt,   b,   b,   b,   b,   b,   b,   b,  wt,  f3,  f3,  f3,  f3,  wt},
-                {wt,  f2,  f2,  f2,  f2,  wt,   b,   b,   b,   b,   b,   b,   b,  wt,  wt,  f2,  f2,  f2,  wt},
-                {wt,  f1,  f1,  f1,  f1,  wt,   b,   b,   b,   b,   b,   b,   b,   b,  wt,  f1,  f1,  f1,  wt},
-                {wt,  wt,  wt,  wt,  wt,  wt,   b,   b,   b,   b,   b,   b,   b,   b,  wt,  wt,  wt,  wt,  wt},
+                {wbl, wt,  wt, wbr,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,  b,   b,   b,   b},
+                {wv,  f1, f12,  wv,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,  b,   b,   b,   b},
+                {wv,  f3,  f3, wtl, wbr,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,  b,   b,   b,   b},
+                {wv,  f2,  f2,  f2, wtl, wbr,   b,   b,   b,   b,   b,   b,   b,   b,   b,  b,   b,   b,   b},
+                {wv,  f1,  f1,  f1,  f1,  wv,   b,   b,   b,   b,   b,   b,   b,   b,   b,  b,   b,   b,   b},
+                {wv,  f3,  f3,  f3,  f3,  wv,   b,   b,   b,   b,   b,   b,   b,   b,   b,  b,   b,   b,   b},
+                {wv,  f2,  f2,  f2,  f2, wtl, wbr,   b,   b,   b,   b,   b,   b,   b,   b,  b,   b,   b,   b},
+                {wv,  f1,  f1,  f1,  f1,  f1,  wv,   b,   b,   b,   b,   b,   b,   b,   b,  b,   b,   b,   b},
+                {wv, f31,  f3,  f3,  f3,  f3,  wv,   b,   b,   b,   b,   b,   b,   b,   b,  b,   b,   b,   b},
+                {wv, f21, f21,  f2,  f2,  f2,  wv,   b,   b,   b,   b,   b,   b,   b,   b,  b,   b,   b,   b},
+                {wtl, wt, wbr,  f1,  f1,  f1,  wv,   b,   b,   b,   b,   b,   b,   b,   b,  b,   b,   b,   b},
+                { b,   b,  wv,  f3,  f3,  f3, wtl, wbr,   b,   b,   b,   b,   b,   b,   b,  b,   b,   b,   b},
+                { b,   b,  wv,  f2,  f2,  f2,  f2,  wv,   b,   b,   b,   b,   b,   b,   b,  b,   b,   b,   b},
+                { b,   b,  wv,  f1,  f1,  f1,  f1, wtl, wbr,   b,   b,   b,   b,   b,   b,  b,   b,   b,   b},
+                { b,   b,  wv,  f3,  f3,  f3,  f3,  f3, wtl, wbr,   b,   b, wbl,  wt,  wt, wt, wbr,   b,   b},
+                { b,   b, wtl, wbr,  f2,  f2,  f2,  f2,  f2,  wv,   b, wbl, wtr, f22,  f2, f2,  wv,   b,   b},
+                { b,   b,   b,  wv,  f1,  f1,  f1,  f1,  f1, wtl,  wt, wtr, f11, f11,  f1, f1,  wv,   b,   b},
+                { b,   b,   b,  wv,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3, f31,  f3,  f3,wbl, wtr,   b,   b},
+                { b,   b, wbl, wtr,  f2,  f2,  f2,  f2,  f2,  f2,  f2,  f2,  f2, wbl,  wt,wtr,   b,   b,   b},
+                { b,   b,  wv,  f1,  f1,  f1,  f1,  f1,  f1,  f1, wbl,  wt,  wt, wtr,   b,  b,   b,   b,   b},
+                { b,   b,  wv,  f3,  f3,  f3,  f3,  f3,  f3, wbl, wtr,   b,   b,   b,   b,  b,   b,   b,   b},
+                { b,   b,  wv,  f2,  f2,  f2,  f2,  f2,  f2,  wv,   b,   b,   b,   b,   b,  b,   b,   b,   b},
+                { b, wbl, wtr,  f1,  f1,  f1,  f1,  f1,  f1, wtl, wbr,   b,   b,   b,   b,  b,   b,   b,   b},
+                { b,  wv,  f3, f31, f31,  f3,  f3,  f3,  f3,  f3, wtl,  wt, wbr,   b,   b,  b,   b,   b,   b},
+                {wbl,wtr,  f2, f21,  f2,  f2,  f2,  f2,  f2,  f2,  f2,  f2,  wv,   b,   b,  b,   b,   b,   b},
+                {wv,  f1,  f1, f11, wbl,  wt, wbr,  f1,  f1,  f1,  f1,  f1,  wv,   b,   b,  b,   b,   b,   b},
+                {wv,  f3,  f3, wbl, wtr,   b, wtl,  f3,  f3,  f3,  f3,  f3,  wv,   b,   b,  b,   b,   b,   b},
+                {wv,  f2,  f2,  wv,   b,   b,   b, wbr,  f2,  f2,  f2,  f2,  wv,   b,   b,  b,   b,   b,   b},
+                {wv,  f1,  f1,  wv,   b,   b,   b, wtl, wbr,  f1,  f1,  f1, wtl, wbr,   b,  b,   b,   b,   b},
+                {wv,  f3, wbl, wtr,   b,   b,   b,   b,  wv,  f3,  f3,  f3,  f3, wtl, wbr,  b,   b,   b,   b},
+                {wv,  f2,  wv,   b,   b,   b,   b,   b,  wv,  f2,  f2,  f2,  f2,  f2,  wv,  b,   b,   b,   b},
+                {wv,  f1, wtl, wbr,   b,   b,   b,   b, wtl, wbr,  f1,  f1,  f1,  f1,  wv,  b,   b,   b,   b},
+                {wv,  f3,  f3, wtl, wbr,   b,   b,   b,   b, wtl, wbr,  f3,  f3,  f3, wtl, wbr,   b,   b,   b},
+                {wv,  f2,  f2, f21, wtl, wbr,   b,   b,   b,   b, wtl, wbr,  f2,  f2,  f2,  wv,   b,   b,   b},
+                {wv, f11, f11, f11,  f1,  wv,   b,   b,   b,   b,   b,  wv,  f1,  f1,  f1,  wv,  wt,  wt, wbr},
+                {wv, f31,  f3,  f3,  f3,  wv,   b,   b,   b,   b,   b, wtl, wbr,  f3,  f3,  wv, f32, f32,  wv},
+                {wtl, wbr,  f2, f22, wbl, wtr,   b,   b,   b,   b,   b,   b,  wv,  f2, f21, f21, f21, f22,  wv},
+                { b, wtl,  wt,  wt, wtr,   b,   b,   b,   b,   b,   b,   b,  wv,  f1,  f1,  f1,  f1, f11,  wv},
+                { b,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,  wv,  f3,  f3, wbl,  wt,  wt,  wt},
+                { b,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,  wv,  f2,  f2,  wv,   b,   b,   b},
+                { b,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,  wv,  f1,  f1, wtl, wbr,   b,   b},
+                { b,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,  wv,  f3,  f3,  f3,  wv,   b,   b},
+                { b,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,  wv,  f2,  f2,  f2,  wv,   b,   b},
+                { b,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,  wv,  f1,  f1,  f1, wtl, wbr,   b},
+                { b,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,  wv,  f3,  f3,  f3,  f3,  wv,   b},
+                { b,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,   b,  wv,  f2,  f2,  f2,  f2,  wv,   b},
+                { b,   b, wbl,  wt, wbr,   b,   b,   b,   b,   b,   b,   b,  wv,  f1,  f1,  f1,  f1,  wv,   b},
+                { b, wbl, wtr, f32, wtl, wbr,   b,   b,   b, wbl,  wt,  wt, wtr,  f3,  f3,  f3, f32,  wv,   b},
+                {wbl, wtr, f11, f11,  f1,  wv,   b, wbl,  wt, wtr,  f2,  f2,  f2,  f2,  f2,  f2, f12, wv,   b},
+                {wv,  f1, f11,  f1,  f1,  wv, wbl, wtr,  f1,  f1,  f1,  f1,  f1,  f1,  f1, wbl, wt, wtr,   b},
+                {wv,  f3,  f3,  f3,  f3, wtl, wtr,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3, wv,   b,   b,   b},
+                {wtl, wbr,  f2,  f2,  f2,  f2,  f2,  f2,  f2,  f2,  f2,  f2,  f2,  f2,  f2, wtl, wbr,   b,   b},
+                { b, wtl, wbr,  f1,  f1,  f1,  f1,  f1,  f1,  f1,  f1,  f1,  f1,  f1,  f1,  f1, wtl, wbr,   b},
+                { b,   b,  wv,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3, f31,  wv,   b},
+                { b,   b,  wv,  f2,  f2,  f2, f21, f21, f21,  f2,  f2,  f2,  f2,  f2,  f2,  f2, f11,  wv,   b},
+                { b,   b,  wv,  f1,  f1,  f1, f11, f11,  f1,  f1,  f1,  f1,  f1,  f1,  f1, f11, wbl, wtr,   b},
+                { b,   b,  wv,  f3,  f3,  f3,  f3, f31,  f3,  f3,  f3,  f3,  f3,  f3,  f3, wbl, wtr,   b,   b},
+                { b,   b,  wv,  f2,  f2,  f2,  f2,  f2,  f2,  f2,  f2,  f2,  f2,  f2,  f2,  wv,   b,   b,   b},
+                { b,   b,  wv,  f1,  f1,  f1,  f1,  f1,  f1,  f1,  f1,  f1,  f1,  f1,  f1,  wv,   b,   b,   b},
+                { b,   b,  wv,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  f3,  wv,   b,   b,   b},
+                { b,   b,  wv,  f2,  f2,  f2, wbl,  wt,  wt,  wt, wbr,  f2,  f2,  f2,  f2, wtl,  wt,  wt, wbr},
+                { b,   b,  wv,  f1,  f1,  f1,  wv,   b,   b,   b, wtl, wbr,  f1,  f1,  f1,  f1, f11, f11,  wv},
+                { b, wbl, wtr,  f3,  f3,  f3,  wv,   b,   b,   b,   b, wtl, wbr,  f3,  f3,  f3, f31, f31,  wv},
+                {wbl, wtr,  f2,  f2,  f2, wbl, wtr,   b,   b,   b,   b,   b, wtl, wbr,  f2,  f2,  f2, f21,  wv},
+                {wv,  f1,  f12, f12,f12,  wv,   b,   b,   b,   b,   b,   b,   b,  wv,  f1,  f1,  f1, f11,  wv},
+                {wv,  f3,  f3, f31, f32,  wv,   b,   b,   b,   b,   b,   b,   b,  wv,  f3,  f3,  f3,  f3,  wv},
+                {wv, f22,  f2,  f2, f22,  wv,   b,   b,   b,   b,   b,   b,   b, wtl, wbr,  f2,  f2,  f2,  wv},
+                {wv, f12, f11,  f1, f12,  wv,   b,   b,   b,   b,   b,   b,   b,   b,  wv,  f1,  f1,  f1,  wv},
+                {wtl, wt,  wt,  wt,  wt, wtr,   b,   b,   b,   b,   b,   b,   b,   b, wtl,  wt,  wt,  wt, wtr},
         };
         return new Level(game, tiles, actors);
     }
