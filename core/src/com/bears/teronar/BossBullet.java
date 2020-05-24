@@ -1,12 +1,9 @@
 package com.bears.teronar;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 
 
-
-public class Bullet {
+public class BossBullet {
     Texture texture;
     Speed movementSpeed;
     Boolean solid;
@@ -20,9 +17,9 @@ public class Bullet {
 
     public static final int SPEED = 500;
     public boolean remove = false;
-    private static final int damage = 3;
+    private static final int damage = 20;
 
-    public Bullet(Texture texture, final Teronar game, Level level, double theta) {
+    public BossBullet(Texture texture, final Teronar game, Level level, double theta, int x, int y) {
         this.texture = texture;
         this.movementSpeed = Speed.MEDIUM;
         this.solid = true;
@@ -30,8 +27,8 @@ public class Bullet {
         this.size = 64;
         this.game = game;
         this.cooldown = 0;
-        this.x = game.centerX;
-        this.y = game.centerY;
+        this.x = x;
+        this.y = y;
         this.theta = theta;
         this.level = level;
     }
@@ -45,17 +42,10 @@ public class Bullet {
             remove = true;
             return;
         } else {
-            for (Enemy e : level.actors) {
-                if ((x >= e.position.x - 64 - 8 && x <= e.position.x + 8) &&
-                        (y >= e.position.y - 64 - 8 && y <= e.position.y + 8)) {
-                    remove = true;
-                    e.health -= damage;
-                }
-            }
-            if ((x >= level.boss.x - 64 - 8 && x <= level.boss.x + 8) &&
-                    (y >= level.boss.y - 64 - 8 && y <= level.boss.y + 8)) {
+            if ((x >= game.centerX - 64 - 8 && x <= game.centerX + 8) &&
+                    (y >= game.centerY - 64 - 8 && y <= game.centerY + 8)) {
                 remove = true;
-                level.boss.health -= damage;
+                level.character.health -= damage;
             }
         }
     }
