@@ -13,7 +13,7 @@ public class Character {
     private Texture bulletTexture;
     private ArrayList<Bullet> movingBullets;
     long cooldown;
-    private final int MIN_COOLDOWN = 250;
+    private final int MIN_COOLDOWN = 350;
     private Level level;
     private int health;
     private int x, y;
@@ -55,7 +55,7 @@ public class Character {
         float x = Gdx.input.getX() - WINDOWMAX_X / 2;
         float y = WINDOWMAX_Y / 2 - Gdx.input.getY();
         double theta = Math.atan2(y, x);
-        
+
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && cooldownDiff > MIN_COOLDOWN) {
             this.cooldown = System.currentTimeMillis();
             movingBullets.add(new Bullet(bulletTexture, game, this.level, theta));
