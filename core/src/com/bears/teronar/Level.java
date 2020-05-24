@@ -3,13 +3,23 @@ package com.bears.teronar;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
+import java.util.ArrayList;
+
 public class Level {
     private Tile[][] tiles;
     final Teronar game;
+    ArrayList<Enemy> actors;
 
     public Level(final Teronar game, Tile[][] tiles) {
         this.tiles = tiles;
         this.game = game;
+        this.actors = new ArrayList<>();
+    }
+
+    public Level(final Teronar game, Tile[][] tiles, ArrayList<Enemy> actors) {
+        this.tiles = tiles;
+        this.game = game;
+        this.actors = actors;
     }
 
     public int divDown(int x, int y) {
@@ -46,6 +56,10 @@ public class Level {
             game.centerX = oldx;
             game.centerY = oldy;
         }
+
+        for (Enemy actor: actors) {
+            actor.move((int) (Math.random()*10-5), (int) (Math.random()*10-5));
+        }
     }
 
     public Tile getTile(int x, int y) {
@@ -73,6 +87,30 @@ public class Level {
                 }
             }
         }
-        game.batch.draw(game.getTexture("assets/King-Up.png"), game.centerX, game.centerY);
+        for (Enemy actor: actors) {
+            actor.render();
+        }
+    }
+
+    public static Level basicLevel(final Teronar game) {
+        FloorTile f1 = new FloorTile(game.getTexture("assets/Dungeon Tile 1.png"));
+        FloorTile f2 = new FloorTile(game.getTexture("assets/Dungeon Tile 2.png"));
+        FloorTile f3 = new FloorTile(game.getTexture("assets/Dungeon Tile 3.png"));
+        FloorTile f11 = new FloorTile(game.getTexture("assets/Dungeon Tile 1-1.png"));
+        FloorTile f21 = new FloorTile(game.getTexture("assets/Dungeon Tile 2-1.png"));
+        FloorTile f31 = new FloorTile(game.getTexture("assets/Dungeon Tile 3-1.png"));
+        ArrayList<Enemy> actors = new ArrayList<>();
+        actors.add(new Enemy(game, game.getTexture("assets/pot_health.png"), new Position(120, 120)));
+        actors.add(new Enemy(game, game.getTexture("assets/pot_health.png"), new Position(300, 250)));
+        actors.add(new Enemy(game, game.getTexture("assets/pot_health.png"), new Position(800, 60)));
+        Tile[][] tiles = {
+                {f11, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1},
+                {f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3},
+                {f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2},
+                {f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1, f1},
+                {f3, f3, f3, f3, f31, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3, f3},
+                {f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f2, f21}
+        };
+        return new Level(game, tiles, actors);
     }
 }
