@@ -20,6 +20,7 @@ public class Bullet {
 
     public static final int SPEED = 500;
     public boolean remove = false;
+    private static final int damage = 5;
 
     public Bullet(Texture texture, final Teronar game, Level level, int orientation) {
         this.texture = texture;
@@ -45,7 +46,11 @@ public class Bullet {
             return;
         } else {
             for (Enemy e : level.actors) {
-                System.out.println("test");
+                if ((x >= e.position.x - 64 - 8 && x <= e.position.x + 8) &&
+                        (y >= e.position.y - 64 - 8&& y <= e.position.y + 8)) {
+                    remove = true;
+                    e.health -= damage;
+                }
             }
         }
     }

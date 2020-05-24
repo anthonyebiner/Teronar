@@ -38,7 +38,6 @@ public class Character {
             this.orientation = 3;
 
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && cooldownDiff > MIN_COOLDOWN) {
-            System.out.println(this.orientation);
             this.cooldown = System.currentTimeMillis();
             movingBullets.add(new Bullet(bulletTexture, game, this.level, this.orientation));
         }
