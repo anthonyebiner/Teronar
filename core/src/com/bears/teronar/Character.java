@@ -33,6 +33,8 @@ public class Character{
     private long lastHitTime;
     private int WINDOWMAX_X = 638 + 40;
     private int WINDOWMAX_Y = 478;
+    public int maxHealth;
+
     
     public Character(final Teronar game, Level level, String gender, Texture projectile, Texture sword) {
         this.upTexture = game.getTexture("./assets/" + gender + "-Up.png");
@@ -52,6 +54,7 @@ public class Character{
         movingBullets = new ArrayList<>();
         this.cooldown = System.currentTimeMillis();
         this.health = 100;
+        this.maxHealth = 100;
         this.lastHitTime = 0;
     }
 

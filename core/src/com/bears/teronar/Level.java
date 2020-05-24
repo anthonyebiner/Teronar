@@ -11,17 +11,20 @@ public class Level{
     ArrayList<Enemy> actors;
     public Boss boss;
     public Character character;
+    ArrayList<Potion> potions;
 
     public Level(final Teronar game, Tile[][] tiles) {
         this.tiles = tiles;
         this.game = game;
         this.actors = new ArrayList<>();
+        this.potions = new ArrayList<>();
     }
 
     public Level(final Teronar game, Tile[][] tiles, ArrayList<Enemy> actors) {
         this.tiles = tiles;
         this.game = game;
         this.actors = actors;
+        this.potions = new ArrayList<>();
 
         spawnEnemy(850, 1050);
         spawnEnemy(900, 1050);
@@ -49,10 +52,17 @@ public class Level{
         spawnEnemy(550, 3650);
         spawnEnemy(450, 3650);
         spawnEnemy(400, 3650);
+        spawnPotion(1000, 4300);
+        spawnPotion(200, 200);
     }
 
     public void spawnEnemy(int x, int y) {
         actors.add(new Enemy(game, this, game.getTexture("assets/treacherous_guard.png"), new Position(x, y)));
+    }
+
+    public void spawnPotion(int x, int y) {
+        Potion p = new Potion(game, game.getTexture("assets/pot_health.png"), new Position(x, y));
+        potions.add(p);
     }
 
     public int divDown(int x, int y) {
@@ -107,6 +117,23 @@ public class Level{
             // If only the y movement is valid, move in y.
             game.centerY = (int) (game.centerY + ymovement*200*Gdx.graphics.getDeltaTime());
         } // If none of the combinations are valid, do not move (center stays the same; do nothing!)
+
+        checkItems();
+    }
+
+    public void checkItems() {
+        for (Potion p: potions) {
+            if ((p.position.x >= game.centerX - 64 - 8 && p.position.x <= game.centerX + 8) &&
+                    (p.position.y >= game.centerY - 64 - 8 && p.position.y <= game.centerY + 8)) {
+                if (p.visible && character.health > 0) {
+                    character.health += p.healing;
+                    if (character.health > character.maxHealth) {
+                        character.health = character.maxHealth;
+                    }
+                    p.visible = false;
+                }
+            }
+        }
     }
 
     public Tile getTile(int x, int y) {
@@ -162,6 +189,9 @@ public class Level{
         }
         for (Enemy actor: actors) {
             actor.render();
+        }
+        for (Potion potion: potions) {
+            potion.render();
         }
         renderHealth();
     }
