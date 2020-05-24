@@ -15,7 +15,7 @@ public class Animations {
     private Boolean playOnce; // This is a boolean that defines if the animation should not repeat.
 
     public Animations(TextureRegion region, int frameCount, float cycleTime) {
-        playOnce = true;
+        playOnce = false;
         frames = new ArrayList<TextureRegion>();
         int frameWidth = region.getRegionWidth() / frameCount;
         for(int i = 0; i < frameCount; i++) {

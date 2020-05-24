@@ -20,6 +20,9 @@ public class Character{
     private Texture rightTexture;
     private ArrayList<Bullet> movingBullets;
     private Animations walkUpAnimation;
+    private Animations walkDownAnimation;
+    private Animations walkLeftAnimation;
+    private Animations walkRightAnimation;
     private String monarch_gender;
     private Sword sword;
     long cooldown;
@@ -42,6 +45,9 @@ public class Character{
         this.game = game;
 
         this.walkUpAnimation = new Animations(new TextureRegion(game.getTexture("./assets/animations/" + gender + "-Walk-Up.png")), 4, 0.5f);
+        this.walkDownAnimation = new Animations(new TextureRegion(game.getTexture("./assets/animations/" + gender + "-Walk-Down.png")), 4, 0.5f);
+        this.walkLeftAnimation = new Animations(new TextureRegion(game.getTexture("./assets/animations/" + gender + "-Walk-Left.png")), 4, 0.5f);
+        this.walkRightAnimation = new Animations(new TextureRegion(game.getTexture("./assets/animations/" + gender + "-Walk-Right.png")), 4, 0.5f);
         this.level = level;
         movingBullets = new ArrayList<>();
         this.cooldown = System.currentTimeMillis();
@@ -67,7 +73,6 @@ public class Character{
             }
         }
 
-        walkUpAnimation.update(delta);
 
         long cooldownDiff =  System.currentTimeMillis() - cooldown;
 
@@ -113,6 +118,21 @@ public class Character{
             character.texture = leftTexture;
         } else if (direction == "Right") {
             character.texture = rightTexture;
+        }
+    }
+    public void move(String direction, float delta){
+        if (direction == "Up"){
+            walkUpAnimation.update(delta);
+            character.texture = walkUpAnimation.getFrame().getTexture();
+        } else if (direction == "Down") {
+            walkDownAnimation.update(delta);
+            character.texture = walkDownAnimation.getFrame().getTexture();
+        } else if (direction == "Left") {
+            walkLeftAnimation.update(delta);
+            character.texture = walkLeftAnimation.getFrame().getTexture();
+        } else if (direction == "Right") {
+            walkRightAnimation.update(delta);
+            character.texture = walkRightAnimation.getFrame().getTexture();
         }
     }
     public void dispose(){
