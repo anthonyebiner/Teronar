@@ -15,6 +15,5 @@ public class Actor {
         this.solid = true;
         this.visible = false;
         this.size = 64;
-        position = Position.defaultPos();
     }
 }
