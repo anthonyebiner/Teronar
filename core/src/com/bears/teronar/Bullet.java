@@ -36,7 +36,7 @@ public class Bullet {
         this.y = game.centerY;
         this.theta = theta;
         this.level = level;
-        this.lifetime = 4.0;
+        this.lifetime = 0.5;
         this.age = 0.0;
     }
 
@@ -44,6 +44,7 @@ public class Bullet {
         this.age += deltaTime;
         if (checkScreenBoundary(deltaTime) || (this.age >= this.lifetime)) {
             // Screen condition
+            remove = true;
             return;
         } else if (level.getTile(Math.round(this.x+this.size/2), Math.round(this.y+this.size/2)).solid){
             // Wall collision

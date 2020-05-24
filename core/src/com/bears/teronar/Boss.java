@@ -39,7 +39,6 @@ public class Boss {
         if (this.health <= 0 ||
                 !(Math.abs(game.centerX - x) < game.screenSizeX / 2 &&
                 Math.abs(game.centerY - y) < game.screenSizeY / 2 )) {
-            System.out.println("Not spawning");
             return;
         }
         game.batch.draw(character.texture, x, y);
