@@ -76,14 +76,12 @@ public class Level{
             if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX + 60, game.centerY + 60).solid
                     || getTile(game.centerX + 60, game.centerY).solid || getTile(game.centerX, game.centerY + 60).solid) {
                 game.centerX = oldx;
-                game.centerY = oldy;
             }
         } else if (Gdx.input.isKeyPressed(Input.Keys.D)) { //D
             game.centerX += 200 * Gdx.graphics.getDeltaTime();
             if (getTile(game.centerX, game.centerY).solid || getTile(game.centerX + 60, game.centerY + 60).solid
                     || getTile(game.centerX + 60, game.centerY).solid || getTile(game.centerX, game.centerY + 60).solid) {
                 game.centerX = oldx;
-                game.centerY = oldy;
             }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.W)) { //W
